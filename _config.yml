@@ -14,7 +14,7 @@ description: > # this means to ignore newlines until "baseurl:"
   ideas and values into the world—that I am able to change it in positive ways."
 
 
-baseurl: "Unarine_Tshiwawa_Blog" # the subpath of your site, e.g. /blog
+baseurl: "/Unarine_Tshiwawa_Blog/" # the subpath of your site, e.g. /blog
 url: "http://yourdomain.com" # the base hostname & protocol for your site
 #twitter_username: greatunarine1 #jekyllrb
 github_username: tshuna001 #jekyll
