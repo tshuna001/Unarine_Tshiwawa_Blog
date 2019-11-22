@@ -1,0 +1,23 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Unarine Tshiwawa #Your awesome title
+email: unarine.tshiwawa@gmail.com #your-email@domain.com
+description: > # this means to ignore newlines until "baseurl:"
+
+  "To me success means effectiveness in the world, that I am able to carry my
+  ideas and values into the world—that I am able to change it in positive ways."
+
+
+baseurl: "Unarine_Tshiwawa_Blog" # the subpath of your site, e.g. /blog
+url: "http://yourdomain.com" # the base hostname & protocol for your site
+#twitter_username: greatunarine1 #jekyllrb
+github_username: tshuna001 #jekyll
+
+# Build settings
+markdown: kramdown
