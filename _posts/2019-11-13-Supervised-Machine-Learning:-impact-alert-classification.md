@@ -2,6 +2,7 @@
 layout: post
 author: Unarine Tshiwawa
 ---
+
 # 1. We shall start by defining the problem:
 
 We are given a dataset containing number of false accidents impacts that are labelled (by time, season, and location) and a test dataset that contain impacts that are not labelled.  In this exercise, we will use a model trained on the dataset containing false impacts to classify different kinds of impacts cause in the test dataset.
