@@ -1,21 +1,20 @@
 ---
 layout: post
-author: Unarine Tshiwawa
+author: "Unarine Tshiwawa"
 ---
-### Identifying the problem:
+### 1. Identifying the problem:
 
-In this task, I seek to demonstrate how unsupervised learning machine leaning can be used in an unlabelled dataset.  
+In this task, I seek to demonstrate how unsupervised learning machine leaning can be used in an unlabelled dataset.  Just like in classification, each instance gets assigned to a group. However, this is an unsupervised task.  
 
-`In this work`
+`In this work, the goal is to group similar instances together into clusters.`
 
-The dataset contained different clusters of stars from some field.  I will use clustering algorithm t attempts to find distinct groups of data without reference to any labels. A powerful clustering method called a Gaussian mixture model (GMM) will be adopted to achieve the goal.
 
 
 ```python
 import pandas as pd
 from IPython.display import display
 import seaborn as sns
-sns.set()
+sns.set('notebook')
 import matplotlib.pylab as plt
 import warnings
 warnings.filterwarnings('ignore')
@@ -24,16 +23,20 @@ warnings.filterwarnings('ignore')
 
 # Dataset
 
+The dataset contained different clusters of stars from some field.  I will use clustering algorithm to attempts to find distinct groups of data without reference to any labels.
+
 
 ```python
 df = pd.read_csv('data.csv')
+
+df1 = df.copy()
 ```
 
 Let's check the shape of the data
 
 
 ```python
-df.shape
+df1.shape
 ```
 
 
@@ -50,7 +53,7 @@ Let's impute missing values:
 
 ```python
 print('\n---------------------------Impute missing values----------------------')
-display(df.isnull().sum())
+display(df1.isnull().sum())
 ```
 
 
@@ -126,9 +129,10 @@ Here we will remove redundant columns from the dataset.
 
 
 ```python
-df = df.iloc[:,5:34]
+df1 = df1.iloc[:,5:34]
 
-display(df.head(15))
+
+display(df1.head(8))
 ```
 
 
@@ -366,177 +370,9 @@ display(df.head(15))
       <td>-32:20:16.2</td>
       <td>31.794682</td>
     </tr>
-    <tr>
-      <th>8</th>
-      <td>267.782309</td>
-      <td>-32.314028</td>
-      <td>1216.120</td>
-      <td>3348.355</td>
-      <td>17.2033</td>
-      <td>0.0518</td>
-      <td>200950</td>
-      <td>21.85581</td>
-      <td>0.59356</td>
-      <td>0.12884</td>
-      <td>...</td>
-      <td>-0.57910</td>
-      <td>-0.02658</td>
-      <td>1.15941</td>
-      <td>0.005993</td>
-      <td>3.53978</td>
-      <td>4.56843</td>
-      <td>2.42907</td>
-      <td>17:51:07.8</td>
-      <td>-32:18:50.5</td>
-      <td>110.145859</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>267.835602</td>
-      <td>-32.319098</td>
-      <td>1976.117</td>
-      <td>3264.169</td>
-      <td>17.4567</td>
-      <td>0.0626</td>
-      <td>200985</td>
-      <td>22.73157</td>
-      <td>0.33644</td>
-      <td>0.29747</td>
-      <td>...</td>
-      <td>-0.01420</td>
-      <td>-0.29635</td>
-      <td>0.59337</td>
-      <td>0.006781</td>
-      <td>4.54292</td>
-      <td>6.00984</td>
-      <td>3.99572</td>
-      <td>17:51:20.5</td>
-      <td>-32:19:08.8</td>
-      <td>8.191454</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>267.784256</td>
-      <td>-32.303904</td>
-      <td>1243.385</td>
-      <td>3519.108</td>
-      <td>16.6806</td>
-      <td>0.0357</td>
-      <td>200831</td>
-      <td>22.14780</td>
-      <td>1.11575</td>
-      <td>0.40317</td>
-      <td>...</td>
-      <td>-0.31412</td>
-      <td>-0.13794</td>
-      <td>0.68615</td>
-      <td>0.005668</td>
-      <td>9.63083</td>
-      <td>5.27875</td>
-      <td>10.05811</td>
-      <td>17:51:08.2</td>
-      <td>-32:18:14.1</td>
-      <td>108.213480</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>267.850993</td>
-      <td>-32.453306</td>
-      <td>57.513</td>
-      <td>997.950</td>
-      <td>12.4843</td>
-      <td>0.0038</td>
-      <td>101424</td>
-      <td>16.03348</td>
-      <td>0.00829</td>
-      <td>0.00286</td>
-      <td>...</td>
-      <td>-0.00380</td>
-      <td>0.00936</td>
-      <td>0.02021</td>
-      <td>0.011434</td>
-      <td>3.21058</td>
-      <td>4.05789</td>
-      <td>1.82369</td>
-      <td>17:51:24.2</td>
-      <td>-32:27:11.9</td>
-      <td>99.660254</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>267.870488</td>
-      <td>-32.362186</td>
-      <td>333.339</td>
-      <td>2535.851</td>
-      <td>15.7359</td>
-      <td>0.0212</td>
-      <td>200715</td>
-      <td>19.72227</td>
-      <td>0.02835</td>
-      <td>0.02617</td>
-      <td>...</td>
-      <td>0.02391</td>
-      <td>-0.02002</td>
-      <td>0.06237</td>
-      <td>0.006339</td>
-      <td>3.29613</td>
-      <td>3.83408</td>
-      <td>1.89724</td>
-      <td>17:51:28.9</td>
-      <td>-32:21:43.9</td>
-      <td>12.498826</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>267.957741</td>
-      <td>-32.282199</td>
-      <td>1576.479</td>
-      <td>3886.274</td>
-      <td>13.7495</td>
-      <td>0.0070</td>
-      <td>202052</td>
-      <td>17.41841</td>
-      <td>0.00899</td>
-      <td>0.00613</td>
-      <td>...</td>
-      <td>0.00775</td>
-      <td>0.00741</td>
-      <td>0.02145</td>
-      <td>0.015871</td>
-      <td>4.35075</td>
-      <td>5.60937</td>
-      <td>3.50549</td>
-      <td>17:51:49.9</td>
-      <td>-32:16:55.9</td>
-      <td>97.136510</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>267.956182</td>
-      <td>-32.282561</td>
-      <td>1554.249</td>
-      <td>3880.173</td>
-      <td>16.3781</td>
-      <td>0.0324</td>
-      <td>201521</td>
-      <td>21.25057</td>
-      <td>0.40888</td>
-      <td>0.10962</td>
-      <td>...</td>
-      <td>-0.43060</td>
-      <td>0.14495</td>
-      <td>0.90868</td>
-      <td>0.034771</td>
-      <td>6.56148</td>
-      <td>7.70614</td>
-      <td>6.37014</td>
-      <td>17:51:49.5</td>
-      <td>-32:16:57.2</td>
-      <td>91.380269</td>
-    </tr>
   </tbody>
 </table>
-<p>15 rows × 29 columns</p>
+<p>8 rows × 29 columns</p>
 </div>
 
 
@@ -544,7 +380,7 @@ Let's now check the shape of the data.
 
 
 ```python
-df.shape
+df1.shape
 ```
 
 
@@ -558,7 +394,7 @@ df.shape
 
 
 ```python
-display(df.isnull().sum())
+display(df1.isnull().sum())
 ```
 
 
@@ -598,9 +434,9 @@ Let's drop all rows/samples containing nans:
 
 
 ```python
-df = df.dropna()
+df1 = df1.dropna()
 
-df.shape
+df1.shape
 ```
 
 
@@ -612,7 +448,7 @@ df.shape
 
 
 ```python
-display(df.head(10))
+display(df1.head(10))
 ```
 
 
@@ -908,7 +744,7 @@ We still have three redundant columns, let's remove them:
 
 
 ```python
-x = df.drop(['RA2000','DEC2000', 'Name_1'], axis = 1)
+x = df1.drop(['RA2000','DEC2000', 'Name_1'], axis = 1)
 
 print('\n-----------------------------------Shape of the dataset---------------------------------')
 display(x.shape)
@@ -922,7 +758,7 @@ display(x.shape)
     (17515, 26)
 
 
-This dataset is now 21 dimensional: there are 21 features describing each sample.  Here we will use principal component analysis (PCA), which is a fast linear dimensionality reduction technique. It reduces the dimensions of a dataset by projecting the data onto a lower-dimensional subspace.
+This dataset is now 21 dimensional: there are 21 features describing each sample.  Here we will use principal component analysis (PCA), which is a fast linear dimensionality reduction technique. It reduces the dimensions of a dataset by projecting the data onto a lower-dimensional subspace.  Reducing the number of dimensions down to two (or three) makes it possible to plot a condensed view of high dimensional training set on a graph and often gain some important insight by visually detecting patterns, such as clusters.
 
 For 2-dimensional subspace: The first principal component (PCA1) covers the maximum variance in the data and the second
 principal component (PCA2) is orthogonal to the first principal component--all principal components are orthogonal to each other.
@@ -958,21 +794,29 @@ plt.title('Cumulative explained variance')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars2_21_1.png?token=AE5UC7YSVCYYLMNEKNCSYOS54F3YE)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_21_1.png?token=AE5UC75Z6DU6AEJGQHZRQGK55FDFA)
 
 
 Here we see that our two-dimensional projection will lose a lot of information (as measured by the explained variance) and that we’d need about 6 components to retain about 90$\%$ of the variance.
 
 The curve above quantifies how much of the total, 21-dimensional variance is contained within the first N components.
 
-`We will convert our dataset to two dimension:`
+`We will convert our dataset to two & three dimension:`
 
 
 ```python
 
-model = PCA(n_components = 2).fit(x)  #project from 29 to 2 dimensions
+model = PCA(n_components = 2).fit(data_rescaled)  #project from 29 to 2 dimensions
+x_2D = model.transform(data_rescaled) #Transform the data to two dimensions
 
-x_2D = model.transform(x) #Transform the data to two dimensions
+modell = PCA(n_components = 3).fit(data_rescaled) #project from 29 to 3 dimensions
+x_3D = modell.transform(data_rescaled) #Transform the data to three dimensions
+
+
+```
+
+
+```python
 
 ```
 
@@ -980,6 +824,11 @@ x_2D = model.transform(x) #Transform the data to two dimensions
 ```python
 x['PCA1'] = x_2D[:, 0]
 x['PCA2'] = x_2D[:, 1]
+
+x['x1'] = x_3D[:, 0]
+x['x2'] = x_3D[:, 1]
+x['z'] = x_3D[:, 2]
+
 ```
 
 
@@ -1017,9 +866,6 @@ display(x.head(10))
       <th>Expected_RMS_1</th>
       <th>Alarm_2</th>
       <th>...</th>
-      <th>Killharm_Per1_Fundamental_Sincoeff_6</th>
-      <th>Killharm_Per1_Fundamental_Coscoeff_6</th>
-      <th>Killharm_Per1_Amplitude_6</th>
       <th>Period_1_7</th>
       <th>AOV_1_7</th>
       <th>AOV_SNR_1_7</th>
@@ -1027,6 +873,9 @@ display(x.head(10))
       <th>lspermin</th>
       <th>PCA1</th>
       <th>PCA2</th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>z</th>
     </tr>
   </thead>
   <tbody>
@@ -1043,16 +892,16 @@ display(x.head(10))
       <td>0.00179</td>
       <td>6.39196</td>
       <td>...</td>
-      <td>0.01155</td>
-      <td>0.00484</td>
-      <td>0.02505</td>
       <td>0.015565</td>
       <td>3.41553</td>
       <td>4.67124</td>
       <td>2.28794</td>
       <td>113.177390</td>
-      <td>1948.591969</td>
-      <td>337.968307</td>
+      <td>0.605842</td>
+      <td>-0.486187</td>
+      <td>0.605842</td>
+      <td>-0.486187</td>
+      <td>0.286910</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1067,16 +916,16 @@ display(x.head(10))
       <td>0.00118</td>
       <td>5.10836</td>
       <td>...</td>
-      <td>0.00211</td>
-      <td>0.00338</td>
-      <td>0.00797</td>
       <td>0.014812</td>
       <td>5.02959</td>
       <td>6.17483</td>
       <td>4.81995</td>
       <td>92.062210</td>
-      <td>1419.477850</td>
-      <td>-657.317068</td>
+      <td>0.276313</td>
+      <td>-0.506676</td>
+      <td>0.276313</td>
+      <td>-0.506676</td>
+      <td>-0.206979</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1091,16 +940,16 @@ display(x.head(10))
       <td>0.05443</td>
       <td>7.80936</td>
       <td>...</td>
-      <td>-0.26668</td>
-      <td>-0.23009</td>
-      <td>0.70445</td>
       <td>0.017541</td>
       <td>5.07752</td>
       <td>8.06232</td>
       <td>4.88935</td>
       <td>104.545224</td>
-      <td>-1729.683459</td>
-      <td>-913.293074</td>
+      <td>0.586485</td>
+      <td>0.137347</td>
+      <td>0.586485</td>
+      <td>0.137347</td>
+      <td>-0.610663</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1115,16 +964,16 @@ display(x.head(10))
       <td>0.15743</td>
       <td>0.66387</td>
       <td>...</td>
-      <td>-0.05318</td>
-      <td>0.15253</td>
-      <td>0.32307</td>
       <td>0.007814</td>
       <td>3.24337</td>
       <td>3.98715</td>
       <td>1.99459</td>
       <td>18.891792</td>
-      <td>1611.715190</td>
-      <td>-90.758327</td>
+      <td>-0.652359</td>
+      <td>-0.498145</td>
+      <td>-0.652359</td>
+      <td>-0.498145</td>
+      <td>-0.029480</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1139,16 +988,16 @@ display(x.head(10))
       <td>0.00248</td>
       <td>3.85503</td>
       <td>...</td>
-      <td>-0.00545</td>
-      <td>-0.00253</td>
-      <td>0.01201</td>
       <td>0.006415</td>
       <td>4.39385</td>
       <td>4.75353</td>
       <td>3.86889</td>
       <td>71.308296</td>
-      <td>1384.455794</td>
-      <td>454.317422</td>
+      <td>0.060235</td>
+      <td>-0.349633</td>
+      <td>0.060235</td>
+      <td>-0.349633</td>
+      <td>0.261898</td>
     </tr>
     <tr>
       <th>5</th>
@@ -1163,16 +1012,16 @@ display(x.head(10))
       <td>0.01531</td>
       <td>5.04427</td>
       <td>...</td>
-      <td>-0.00799</td>
-      <td>-0.02875</td>
-      <td>0.05967</td>
       <td>0.038873</td>
       <td>4.48847</td>
       <td>4.89371</td>
       <td>3.91457</td>
       <td>97.136510</td>
-      <td>-357.867313</td>
-      <td>-10.641048</td>
+      <td>0.355485</td>
+      <td>-0.035592</td>
+      <td>0.355485</td>
+      <td>-0.035592</td>
+      <td>-0.109320</td>
     </tr>
     <tr>
       <th>6</th>
@@ -1187,16 +1036,16 @@ display(x.head(10))
       <td>0.03288</td>
       <td>2.51186</td>
       <td>...</td>
-      <td>-0.01641</td>
-      <td>-0.05696</td>
-      <td>0.11855</td>
       <td>0.010505</td>
       <td>5.27810</td>
       <td>6.39846</td>
       <td>5.05030</td>
       <td>92.754403</td>
-      <td>-380.040359</td>
-      <td>4.908457</td>
+      <td>0.266163</td>
+      <td>-0.027926</td>
+      <td>0.266163</td>
+      <td>-0.027926</td>
+      <td>-0.112835</td>
     </tr>
     <tr>
       <th>7</th>
@@ -1211,16 +1060,16 @@ display(x.head(10))
       <td>0.04898</td>
       <td>1.10537</td>
       <td>...</td>
-      <td>0.04113</td>
-      <td>-0.03545</td>
-      <td>0.10859</td>
       <td>0.017723</td>
       <td>3.73648</td>
       <td>4.71103</td>
       <td>2.74842</td>
       <td>31.794682</td>
-      <td>-860.374826</td>
-      <td>-681.993746</td>
+      <td>-0.469403</td>
+      <td>-0.028505</td>
+      <td>-0.469403</td>
+      <td>-0.028505</td>
+      <td>-0.486495</td>
     </tr>
     <tr>
       <th>8</th>
@@ -1235,16 +1084,16 @@ display(x.head(10))
       <td>0.12884</td>
       <td>10.07342</td>
       <td>...</td>
-      <td>-0.57910</td>
-      <td>-0.02658</td>
-      <td>1.15941</td>
       <td>0.005993</td>
       <td>3.53978</td>
       <td>4.56843</td>
       <td>2.42907</td>
       <td>110.145859</td>
-      <td>-1279.778915</td>
-      <td>184.983958</td>
+      <td>0.659339</td>
+      <td>0.190395</td>
+      <td>0.659339</td>
+      <td>0.190395</td>
+      <td>-0.102460</td>
     </tr>
     <tr>
       <th>9</th>
@@ -1259,20 +1108,20 @@ display(x.head(10))
       <td>0.29747</td>
       <td>-0.58983</td>
       <td>...</td>
-      <td>-0.01420</td>
-      <td>-0.29635</td>
-      <td>0.59337</td>
       <td>0.006781</td>
       <td>4.54292</td>
       <td>6.00984</td>
       <td>3.99572</td>
       <td>8.191454</td>
-      <td>-1209.589339</td>
-      <td>946.396651</td>
+      <td>-0.756770</td>
+      <td>0.265002</td>
+      <td>-0.756770</td>
+      <td>0.265002</td>
+      <td>0.161073</td>
     </tr>
   </tbody>
 </table>
-<p>10 rows × 28 columns</p>
+<p>10 rows × 31 columns</p>
 </div>
 
 
@@ -1296,12 +1145,39 @@ plt.ylabel('PCA2')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars2_28_1.png?token=AE5UC76V6UGBCZZGYLGN2NC54F4F2)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_29_1.png?token=AE5UC7YLXY3NCAOO5FGSHP255FDHQ)
 
 
-Clearly, we see that 2D doesn't give  much information.
+# Visualise data in 3D:
 
-### Let's consider two clusterring algorithms (KMeans & Gaussian Mixture):
+
+```python
+from mpl_toolkits.mplot3d import Axes3D
+
+
+fig = plt.figure(figsize = (15, 10))
+ax = fig.add_subplot(111, projection = '3d')
+
+ax.scatter(x['x1'], x['x2'], x['z'], cmap = plt.cm.hot)
+ax.set_xlabel("PCA1", fontsize=12)
+ax.set_ylabel("PCA2", fontsize=12)
+ax.set_zlabel("PCA3", fontsize=12)
+
+
+```
+
+
+
+
+    Text(0.5, 0, 'PCA3')
+
+
+
+
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_31_1.png?token=AE5UC77FT2MCHRKEPFLWQAC55FDKK)
+
+
+### Let's consider some clustering algorithms:
 
 We will instantiates different algorithms
 
@@ -1314,11 +1190,6 @@ from sklearn.pipeline import Pipeline
 
 from sklearn.cluster import KMeans
 
-
-```
-
-
-```python
 
 ```
 
@@ -1377,15 +1248,17 @@ plt.ylabel('Average within-cluster sum of squares')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars2_39_1.png?token=AE5UC72QEUHNQBRMG2L3HSK54F4JS)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_40_1.png?token=AE5UC77L75N7BLT6IGDLSSK55FDNS)
 
 
-The elbow seemed to be located at k = 3.
+It is important to scale the input features before you run K-Means, or else the clusters may be very stretched, and K-Means will perform poorly. However, scaling the features does not guarantee that all the clusters will be nice and spherical, but it generally improves things.
+
+Scaling input features, in this work, will be performed in the `Pipeline` using `StandardScaler()` class.
 
 
 ```python
 kmeans = Pipeline(steps=[('preprocessor', preprocessing.StandardScaler()),
-                     ('model', KMeans(n_clusters = 3, n_init = 1, random_state = 10))])
+                     ('model', KMeans(n_clusters = 3))])
 
 model1 = kmeans.fit(x)
 
@@ -1427,10 +1300,38 @@ plt.ylabel('PCA2')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars2_43_1.png?token=AE5UC7Z23MNIOAHEACL7RFS54F4MI)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_44_1.png?token=AE5UC77RXJUIQBXJYTXLTSS55FDQQ)
 
 
-The figure above shows that, the dataset contain 3 groups of stars.
+
+```python
+
+```
+
+
+```python
+fig = plt.figure(figsize = (15, 10))
+ax = fig.add_subplot(111, projection = '3d')
+
+ax.scatter(x['x1'], x['x2'], x['z'], c = y_kmeans, cmap = 'viridis')
+ax.set_xlabel("PCA1", fontsize=12)
+ax.set_ylabel("PCA2", fontsize=12)
+ax.set_zlabel("PCA3", fontsize=12)
+
+```
+
+
+
+
+    Text(0.5, 0, 'PCA3')
+
+
+
+
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_46_1.png?token=AE5UC75CG6TBFZR7K2H6WU255FEV6)
+
+
+The figures above shows that, the dataset contain 3 groups of stars.
 
 
 ```python
@@ -1448,17 +1349,24 @@ plt.tight_layout()
 ```
 
 
-    0    9622
-    1    5550
-    2    2343
+    0    9756
+    1    5451
+    2    2308
     Name: clusterKM, dtype: int64
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars2_45_1.png?token=AE5UC7ZCO3O2NYG2PV26CL254F4QI)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_48_1.png?token=AE5UC77W5ZRDRBCY4UXN4OC55FDWY)
 
 
 ## 2 Gaussian Mixture Model:
+
+A Gaussian mixture model (GMM) is a probabilistic model that assumes that the instances were generated from a mixture of several Gaussian distributions whose parameters are unknown. All the instances generated from a single Gaussian distribution form a cluster that typically looks like an ellipsoid.
+
+This class relies on the Expectation-Maximization (EM) algorithm, which has many similarities with the K-Means algorithm: it also initializes the cluster parameters randomly, then it repeats two steps until convergence.
+
+Just like K-Means, EM can end up converging to poor solutions, so it needs to be run several times, keeping only the
+best solution. This is why we set `n_init` to 10.
 
 
 ```python
@@ -1477,7 +1385,7 @@ gm_score=[]
 
 for i in range(1,10):
 
-    gm = GaussianMixture(n_components = i, n_init = 1, tol = 1e-6, max_iter = 1000, random_state = 10).fit(data_rescaled)
+    gm = GaussianMixture(n_components = i, n_init = 10, tol = 1e-3, max_iter = 1000).fit(data_rescaled)
 
     print("BIC for number of cluster(s) {}: {}".format(i,gm.bic(data_rescaled)))
     print("Log-likelihood score for number of cluster(s) {}: {}".format(i,gm.score(data_rescaled)))
@@ -1501,39 +1409,37 @@ plt.show()
     BIC for number of cluster(s) 1: -1676190.6216027052
     Log-likelihood score for number of cluster(s) 1: 47.95530168653835
     ----------------------------------------------------------------------------------------------------
-    BIC for number of cluster(s) 2: -2171325.82039032
-    Log-likelihood score for number of cluster(s) 2: 62.195340683891565
+    BIC for number of cluster(s) 2: -2171495.710339565
+    Log-likelihood score for number of cluster(s) 2: 62.20019052543439
     ----------------------------------------------------------------------------------------------------
-    BIC for number of cluster(s) 3: -2300437.126170328
-    Log-likelihood score for number of cluster(s) 3: 65.98651034046242
+    BIC for number of cluster(s) 3: -2300486.7314481805
+    Log-likelihood score for number of cluster(s) 3: 65.9879264203326
     ----------------------------------------------------------------------------------------------------
-    BIC for number of cluster(s) 4: -2328548.6398803927
-    Log-likelihood score for number of cluster(s) 4: 66.89444299817677
+    BIC for number of cluster(s) 4: -2353688.393926406
+    Log-likelihood score for number of cluster(s) 4: 67.6121065450227
     ----------------------------------------------------------------------------------------------------
-    BIC for number of cluster(s) 5: -2380433.2167969383
-    Log-likelihood score for number of cluster(s) 5: 68.48102433435189
+    BIC for number of cluster(s) 5: -2399421.322070661
+    Log-likelihood score for number of cluster(s) 5: 69.02307701130657
     ----------------------------------------------------------------------------------------------------
-    BIC for number of cluster(s) 6: -2397149.4573575854
-    Log-likelihood score for number of cluster(s) 6: 69.06365658814336
+    BIC for number of cluster(s) 6: -2413156.6007096865
+    Log-likelihood score for number of cluster(s) 6: 69.52061186510886
     ----------------------------------------------------------------------------------------------------
-    BIC for number of cluster(s) 7: -2417503.796183502
-    Log-likelihood score for number of cluster(s) 7: 69.75014548667563
+    BIC for number of cluster(s) 7: -2425277.5878507434
+    Log-likelihood score for number of cluster(s) 7: 69.97206360449583
     ----------------------------------------------------------------------------------------------------
-    BIC for number of cluster(s) 8: -2445254.568869919
-    Log-likelihood score for number of cluster(s) 8: 70.64778008490818
+    BIC for number of cluster(s) 8: -2445482.0796555667
+    Log-likelihood score for number of cluster(s) 8: 70.65427482614848
     ----------------------------------------------------------------------------------------------------
-    BIC for number of cluster(s) 9: -2437824.68070565
-    Log-likelihood score for number of cluster(s) 9: 70.54111377390045
+    BIC for number of cluster(s) 9: -2447326.030156673
+    Log-likelihood score for number of cluster(s) 9: 70.81234841423796
     ----------------------------------------------------------------------------------------------------
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars2_49_1.png?token=AE5UC73HJSUS2W3LQBZ7PTC54F4UQ)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_52_1.png?token=AE5UC7ZFXWBGWUUEVUKWEZ255FD2Y)
 
 
-The BIC is clearly maximized at a value of 3.
-
-`We shall take 3, as the number of components in the mixture: n_components = 3`
+`We shall take 3, as the optimal number of cluster: n_components = 3`
 
 
 ```python
@@ -1543,30 +1449,49 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-
 GMM = Pipeline(steps = [('preprocessor', preprocessing.StandardScaler()),
-                     ('model', GaussianMixture(n_components = 3, covariance_type = 'full'))])
+                     ('model', GaussianMixture(n_components = 3, n_init = 10, max_iter = 1000, covariance_type = 'full'))])
 
-#assigning feature matrix to a new variable
-xx = x
-
-model = GMM.fit(xx)
+model = GMM.fit(x)
 
 #print(model.score(x))
 
-y_gmm = model.predict(xx)
+y_gmm = model.predict(x)
 
-xx['clusterGMM'] = y_gmm
+x['clusterGMM'] = y_gmm
 ```
 
-`Let's view our 2D figure:`
+
+```python
+
+```
+
+Check whether or not the algorithm converged and how many iterations it took:
+
+
+```python
+l = [GaussianMixture(n_components = 10, n_init = i, max_iter = 1000,
+                     covariance_type = 'full').fit(x).converged_ for i in range(1, 10)]
+l
+```
+
+
+
+
+    [True, True, True, True, True, True, True, True, True]
+
+
+
+The algorithm took one iteration to converge.
+
+`Let's view our 2D & 3D figures:`
 
 
 ```python
 
 plt.figure(figsize=(15,10))
 
-plt.scatter(xx['PCA1'], xx['PCA2'], marker = '.', c = y_gmm, s = 40, cmap = 'viridis')
+plt.scatter(x['PCA1'], x['PCA2'], marker = '.', c = y_gmm, s = 40, cmap = 'viridis')
 
 
 plt.xlabel('PCA1')
@@ -1582,19 +1507,41 @@ plt.ylabel('PCA2')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars2_53_1.png?token=AE5UC77JBDHM5NZFLIANMPS54F4W2)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_60_1.png?token=AE5UC72XZQQSTQVWOJOLONC55FFDK)
+
+
+
+```python
+fig = plt.figure(figsize = (15, 10))
+ax = fig.add_subplot(111, projection = '3d')
+
+ax.scatter(x['x1'], x['x2'], x['z'], c = y_gmm, cmap = 'viridis')
+ax.set_xlabel("PCA1", fontsize=12)
+ax.set_ylabel("PCA2", fontsize=12)
+ax.set_zlabel("PCA3", fontsize=12)
+```
+
+
+
+
+    Text(0.5, 0, 'PCA3')
+
+
+
+
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_61_1.png?token=AE5UC747G35IWS2NA263MFS55FEFU)
 
 
 The figure above shows that, the dataset contain 3 groups of stars.
 
 
 ```python
-display(xx.clusterGMM.value_counts())
+display(x.clusterGMM.value_counts())
 
 #x.clusterGMM.value_counts().plot('bar')
 
 
-xx['clusterGMM'].value_counts().plot(kind = 'pie',
+x['clusterGMM'].value_counts().plot(kind = 'pie',
                                  explode=(0,0,0.1), autopct='%1.2f%%',
                                  shadow=True,
                                  legend = True, figsize= (6,4), labels=None)
@@ -1604,261 +1551,19 @@ plt.tight_layout()
 ```
 
 
-    1    9622
-    0    5550
-    2    2343
+    1    9756
+    2    5451
+    0    2308
     Name: clusterGMM, dtype: int64
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars2_55_1.png?token=AE5UC742L7YK3WVW5L2HHQK54F4ZC)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_63_1.png?token=AE5UC7ZSXBRCZWCRQEYVIEC55FEH6)
 
 
+### Conclusion from machine model:
 
-```python
-display(xx.head(8))
-```
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>RA_1</th>
-      <th>DEC_1</th>
-      <th>X_1</th>
-      <th>Y_1</th>
-      <th>MAG</th>
-      <th>MAGe</th>
-      <th>Mean_Mag_1</th>
-      <th>RMS_1</th>
-      <th>Expected_RMS_1</th>
-      <th>Alarm_2</th>
-      <th>...</th>
-      <th>Killharm_Per1_Amplitude_6</th>
-      <th>Period_1_7</th>
-      <th>AOV_1_7</th>
-      <th>AOV_SNR_1_7</th>
-      <th>AOV_NEG_LN_FAP_1_7</th>
-      <th>lspermin</th>
-      <th>PCA1</th>
-      <th>PCA2</th>
-      <th>clusterKM</th>
-      <th>clusterGMM</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>267.637420</td>
-      <td>-32.505489</td>
-      <td>1309.394</td>
-      <td>117.711</td>
-      <td>11.6591</td>
-      <td>0.0026</td>
-      <td>15.01506</td>
-      <td>0.01028</td>
-      <td>0.00179</td>
-      <td>6.39196</td>
-      <td>...</td>
-      <td>0.02505</td>
-      <td>0.015565</td>
-      <td>3.41553</td>
-      <td>4.67124</td>
-      <td>2.28794</td>
-      <td>113.177390</td>
-      <td>1948.591969</td>
-      <td>337.968307</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>267.568298</td>
-      <td>-32.472861</td>
-      <td>324.079</td>
-      <td>665.137</td>
-      <td>10.8853</td>
-      <td>0.0018</td>
-      <td>14.18320</td>
-      <td>0.00339</td>
-      <td>0.00118</td>
-      <td>5.10836</td>
-      <td>...</td>
-      <td>0.00797</td>
-      <td>0.014812</td>
-      <td>5.02959</td>
-      <td>6.17483</td>
-      <td>4.81995</td>
-      <td>92.062210</td>
-      <td>1419.477850</td>
-      <td>-657.317068</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>267.555268</td>
-      <td>-32.285918</td>
-      <td>126.340</td>
-      <td>3818.489</td>
-      <td>16.5748</td>
-      <td>0.0332</td>
-      <td>20.58942</td>
-      <td>0.27845</td>
-      <td>0.05443</td>
-      <td>7.80936</td>
-      <td>...</td>
-      <td>0.70445</td>
-      <td>0.017541</td>
-      <td>5.07752</td>
-      <td>8.06232</td>
-      <td>4.88935</td>
-      <td>104.545224</td>
-      <td>-1729.683459</td>
-      <td>-913.293074</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>267.758599</td>
-      <td>-32.485136</td>
-      <td>886.993</td>
-      <td>462.508</td>
-      <td>17.1670</td>
-      <td>0.0503</td>
-      <td>21.99514</td>
-      <td>0.18661</td>
-      <td>0.15743</td>
-      <td>0.66387</td>
-      <td>...</td>
-      <td>0.32307</td>
-      <td>0.007814</td>
-      <td>3.24337</td>
-      <td>3.98715</td>
-      <td>1.99459</td>
-      <td>18.891792</td>
-      <td>1611.715190</td>
-      <td>-90.758327</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>267.797234</td>
-      <td>-32.472325</td>
-      <td>1436.175</td>
-      <td>679.620</td>
-      <td>12.2333</td>
-      <td>0.0034</td>
-      <td>15.69679</td>
-      <td>0.00462</td>
-      <td>0.00248</td>
-      <td>3.85503</td>
-      <td>...</td>
-      <td>0.01201</td>
-      <td>0.006415</td>
-      <td>4.39385</td>
-      <td>4.75353</td>
-      <td>3.86889</td>
-      <td>71.308296</td>
-      <td>1384.455794</td>
-      <td>454.317422</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>267.767202</td>
-      <td>-32.368453</td>
-      <td>1003.500</td>
-      <td>2430.221</td>
-      <td>15.2115</td>
-      <td>0.0146</td>
-      <td>18.97295</td>
-      <td>0.02625</td>
-      <td>0.01531</td>
-      <td>5.04427</td>
-      <td>...</td>
-      <td>0.05967</td>
-      <td>0.038873</td>
-      <td>4.48847</td>
-      <td>4.89371</td>
-      <td>3.91457</td>
-      <td>97.136510</td>
-      <td>-357.867313</td>
-      <td>-10.641048</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>267.768327</td>
-      <td>-32.367157</td>
-      <td>1019.457</td>
-      <td>2452.106</td>
-      <td>16.0023</td>
-      <td>0.0231</td>
-      <td>20.05330</td>
-      <td>0.05390</td>
-      <td>0.03288</td>
-      <td>2.51186</td>
-      <td>...</td>
-      <td>0.11855</td>
-      <td>0.010505</td>
-      <td>5.27810</td>
-      <td>6.39846</td>
-      <td>5.05030</td>
-      <td>92.754403</td>
-      <td>-380.040359</td>
-      <td>4.908457</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>267.720869</td>
-      <td>-32.337827</td>
-      <td>341.550</td>
-      <td>2945.095</td>
-      <td>16.4765</td>
-      <td>0.0312</td>
-      <td>20.54297</td>
-      <td>0.05399</td>
-      <td>0.04898</td>
-      <td>1.10537</td>
-      <td>...</td>
-      <td>0.10859</td>
-      <td>0.017723</td>
-      <td>3.73648</td>
-      <td>4.71103</td>
-      <td>2.74842</td>
-      <td>31.794682</td>
-      <td>-860.374826</td>
-      <td>-681.993746</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>8 rows × 30 columns</p>
-</div>
-
+Both models performs better!
 
 
 ```python

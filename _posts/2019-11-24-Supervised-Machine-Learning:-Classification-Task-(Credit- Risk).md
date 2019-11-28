@@ -1,7 +1,8 @@
 ---
 layout: post
-author: Unarine Tshiwawa
+author: "Unarine Tshiwawa"
 ---
+
 
 $$\mathrm{\textbf{Credit Risk}}$$
 
@@ -714,13 +715,6 @@ display(df1.head(5))
 </div>
 
 
-
-
-
-```python
-#df1.corr()['good_bad_flag']
-```
-
 Let's remove redundant column:
 
 
@@ -939,7 +933,7 @@ pie
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_22_1.png?token=AE5UC76FP3VHOUKZ77EMBKC54OP5W)
+![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_20_1.png?token=AE5UC7254R5MVS3DT27EJ3S55FBFG)
 
 
 NB: - One important thing to note, the dataset is imbalanced. This is an imbalanced class problem because there are significantly more clients who are good payers than bad payers!
@@ -1160,34 +1154,36 @@ We could use a correlation threshold for removing variables. In this case, we wi
 
 ## Correlations
 
-we can calculate correlation values to see how the features are related to the outcome--`good_bad_flag`. Correlation does not of course imply causation, but because we are building a model, the correlated features are likely useful for learning a mapping between the clients information and whether or not they are good payers.
+We can calculate correlation values to see how the features are related to the outcome--`good_bad_flag`. Correlation does not of course imply causation, but because we are building a model, the correlated features are likely useful for learning a mapping between the clients information and whether or not they are good payers.
 
 
 ```python
-df1.corr()['good_bad_flag']
+df1.corr()['good_bad_flag'].sort_values(ascending=False)
 ```
 
 
 
 
-    longitude_gps               -0.011899
-    latitude_gps                -0.014939
-    employment_status_clients   -0.007333
+    good_bad_flag                1.000000
     loanamount_x                 0.095799
     totaldue_x                   0.085127
-    termdays_x                  -0.007663
-    good_bad_flag                1.000000
-    systemloanid_y              -0.024939
-    loannumber_y                 0.038659
     loanamount_y                 0.059628
     totaldue_y                   0.059166
-    termdays_y                   0.033126
     age                          0.046062
+    loannumber_y                 0.038659
+    termdays_y                   0.033126
+    employment_status_clients   -0.007333
+    termdays_x                  -0.007663
+    longitude_gps               -0.011899
+    latitude_gps                -0.014939
+    systemloanid_y              -0.024939
     Name: good_bad_flag, dtype: float64
 
 
 
 # Preprocesing:
+
+- In this step, we shall prepare data for machine learning algorithms.
 
 
 ```python
@@ -1373,7 +1369,7 @@ print(x_test.shape)
 
 Data are not usually presented to the machine learning algorithm in exactly the same raw form as it is found. Usually data are scaled to a specific range in a process called normalization.
 
-We are going to make selected features to the same scale for optimal performance, which is often achieved by transforming the features in the range [0, 1]: standardize features by removing the mean and scaling to unit variance  using `StandardScaler()` class.  This will be done in the pipeline to run multiple processes in the order that they are listed. The purpose of the pipeline is to assemble several steps that can be cross-validated together while setting different parameters.
+We are going to make selected features to the same scale for optimal performance, which is often achieved by transforming the features in the range [0, 1]: standardize features by removing the mean and scaling to unit variance  using `StandardScaler()` class.  This will be done in the pipeline to run multiple processes in the order that they are listed. The purpose and advantage of using pipeline is to assemble several steps that can be cross-validated together while setting different parameters.
 
 
 ```python
@@ -1441,8 +1437,11 @@ print('Accuraccy in test set: {:.2f}' .format(RF.score(x_test, y_test)))
 
 # Model evaluation
 
-We shall now show a confusion matrix showing the frequency of misclassifications by our
-classifier.
+We shall now show a `confusion matrix` showing the frequency of misclassifications by our
+classifier. We shall also look at `receiver operating characteristics (ROC)` & `area under curve (AUC)` to see the performance of each classifier accross various thresholds.
+
+For a perfect model, the classifier performance, has AUC = 1.  Of course that's not achievable in real-world situations.
+So we want the classifier that will achieve AUC value as close as possible to 1.
 
 ### 1. Logistic Regression
 
@@ -1472,7 +1471,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_43_0.png?token=AE5UC75IWQOVPYXAFFZRQXC54OQBW)
+![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_41_0.png?token=AE5UC7ZNVXUGJN7QUXYINW255FBNG)
 
 
 
@@ -1500,10 +1499,7 @@ print('--'*33)
     ------------------------------------------------------------------
 
 
-
-```python
-
-```
+### ROC & AUC - Logistic Regression:
 
 
 ```python
@@ -1540,7 +1536,7 @@ plt.title('Receiver Operating Characteristic Curve, AUC = %0.4f' % auc1, size = 
 
 
 
-![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_48_1.png?token=AE5UC72PUUXECBLMPXBRDU254OQEE)
+![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_46_1.png?token=AE5UC7YQZOSPSUYBIFQ4AD255FBQ6)
 
 
 ### 2. Decision Tree
@@ -1564,7 +1560,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_50_0.png?token=AE5UC72RONOZMIK2LCTLUZ254OQHE)
+![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_48_0.png?token=AE5UC76IPUIKRZDH55AQN3255FBTO)
 
 
 
@@ -1591,6 +1587,8 @@ print('--'*35)
 
     ----------------------------------------------------------------------
 
+
+### ROC & AUC - Decision Tree:
 
 
 ```python
@@ -1624,7 +1622,7 @@ plt.title('Receiver Operating Characteristic Curve, AUC = %0.4f' % auc2, size = 
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_54_1.png?token=AE5UC77F7XVHYS5PP6MRFHC54OQJI)
+![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_53_1.png?token=AE5UC75IDCILLQU7LHQWK5C55FBWQ)
 
 
 ## 3. Random Forest
@@ -1647,7 +1645,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_56_0.png?token=AE5UC736UYIAFV2NHTZEXAK54OQL2)
+![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_55_0.png?token=AE5UC77PLONH2DY6O33N3D255FBZQ)
 
 
 
@@ -1674,6 +1672,8 @@ print('--'*33)
 
     ------------------------------------------------------------------
 
+
+### ROC & AUC - Random Forest:
 
 
 ```python
@@ -1707,7 +1707,7 @@ plt.title('Receiver Operating Characteristic Curve, AUC = %0.4f' % auc3, size = 
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_60_1.png?token=AE5UC7457W2XKHTLIMUSQCK54OQOO)
+![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_60_1.png?token=AE5UC77C3KG6XVGISUNAAH255FB4C)
 
 
 ### Conclusions from Machine Learning Models
