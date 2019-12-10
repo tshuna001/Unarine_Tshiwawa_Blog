@@ -794,7 +794,7 @@ plt.title('Cumulative explained variance')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_21_1.png?token=AE5UC75Z6DU6AEJGQHZRQGK55FDFA)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_21_1.png?token=AE5UC74GFIBFY5HWAWG5XRC57ELZY)
 
 
 Here we see that our two-dimensional projection will lose a lot of information (as measured by the explained variance) and that we’d need about 6 components to retain about 90$\%$ of the variance.
@@ -1145,7 +1145,7 @@ plt.ylabel('PCA2')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_29_1.png?token=AE5UC7YLXY3NCAOO5FGSHP255FDHQ)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_29_1.png?token=AE5UC75AYWVRCMKAQF2KQKS57EMDQ)
 
 
 # Visualise data in 3D:
@@ -1174,7 +1174,7 @@ ax.set_zlabel("PCA3", fontsize=12)
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_31_1.png?token=AE5UC77FT2MCHRKEPFLWQAC55FDKK)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_31_1.png?token=AE5UC72CWBEDAVCLS7DXTKK57EMHE)
 
 
 ### Let's consider some clustering algorithms:
@@ -1248,7 +1248,7 @@ plt.ylabel('Average within-cluster sum of squares')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_40_1.png?token=AE5UC77L75N7BLT6IGDLSSK55FDNS)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_40_1.png?token=AE5UC77H6B3W477UTIWBRGK57EMKW)
 
 
 It is important to scale the input features before you run K-Means, or else the clusters may be very stretched, and K-Means will perform poorly. However, scaling the features does not guarantee that all the clusters will be nice and spherical, but it generally improves things.
@@ -1300,7 +1300,7 @@ plt.ylabel('PCA2')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_44_1.png?token=AE5UC77RXJUIQBXJYTXLTSS55FDQQ)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_44_1.png?token=AE5UC7ZMEPIB7QZTAJA64UC57EMN2)
 
 
 
@@ -1328,7 +1328,7 @@ ax.set_zlabel("PCA3", fontsize=12)
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_46_1.png?token=AE5UC75CG6TBFZR7K2H6WU255FEV6)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_46_1.png?token=AE5UC7YCNB2TABIUSJJO7DC57EMP6)
 
 
 The figures above shows that, the dataset contain 3 groups of stars.
@@ -1356,7 +1356,7 @@ plt.tight_layout()
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_48_1.png?token=AE5UC77W5ZRDRBCY4UXN4OC55FDWY)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_48_1.png?token=AE5UC75SAKPIKMYSUIMZ5S257EMSG)
 
 
 ## 2 Gaussian Mixture Model:
@@ -1436,7 +1436,7 @@ plt.show()
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_52_1.png?token=AE5UC7ZFXWBGWUUEVUKWEZ255FD2Y)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_52_1.png?token=AE5UC725PTQ57ODXQYWJVT257EMUI)
 
 
 `We shall take 3, as the optimal number of cluster: n_components = 3`
@@ -1507,7 +1507,7 @@ plt.ylabel('PCA2')
 
 
 
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_60_1.png?token=AE5UC72XZQQSTQVWOJOLONC55FFDK)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_60_1.png?token=AE5UC73TTHWQYC52JNCBWA257EMWQ)
 
 
 
@@ -1529,7 +1529,7 @@ ax.set_zlabel("PCA3", fontsize=12)
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_61_1.png?token=AE5UC747G35IWS2NA263MFS55FEFU)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_61_1.png?token=AE5UC72VVF7VEL57YKHNTZ257EMZG)
 
 
 The figure above shows that, the dataset contain 3 groups of stars.
@@ -1558,7 +1558,7 @@ plt.tight_layout()
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_63_1.png?token=AE5UC7ZSXBRCZWCRQEYVIEC55FEH6)
+![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_63_1.png?token=AE5UC74EO6IFNRKYLTVPEGS57EM24)
 
 
 ### Conclusion from machine model:
