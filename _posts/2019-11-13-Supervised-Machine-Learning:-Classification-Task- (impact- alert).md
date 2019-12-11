@@ -266,7 +266,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_11_0.png?token=AE5UC723HX33SKPWC2F4EHS55E6JC)
+![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_11_0.png?token=AE5UC74PYVCH7ZGVMOHFGI257F4VO)
 
 
 For each alert impact, we want to know how many accident happened per month in our dataset within stipulated time (2018-01-01 to 2018-08-13).  There is higher accident contribution from speedbump, potholes, car wash, and gravel road impact, respectively, to the total number of impacts.
@@ -571,7 +571,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_22_0.png?token=AE5UC74S3PUQA7LZ2XK2L7C55E6OO)
+![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_22_0.png?token=AE5UC73GGCY3VHDMOUZUDIK57F6AK)
 
 
 We shall plot the locations of the impacts on a map.  folium will be used to view locations
@@ -997,7 +997,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_42_0.png?token=AE5UC7ZB5YXLKDTEOZUP67C55E6ZG)
+![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_42_0.png?token=AE5UC7ZTXBDMQDHYKPQWCMK57F6KI)
 
 
 
@@ -1052,7 +1052,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_45_0.png?token=AE5UC7YF7OEH7TSLHAU7FA255E64I)
+![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_45_0.png?token=AE5UC74N4YYT7HGYDBMUR2257F6M2)
 
 
 Let's look at summary of confusion matrix:
@@ -1111,7 +1111,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_49_0.png?token=AE5UC74YSRE6NUTXZIPAXN255E67E)
+![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_49_0.png?token=AE5UC76TZIYHDMISH33EWEK57F6PA)
 
 
 
@@ -1331,7 +1331,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_60_0.png?token=AE5UC7YQ2DRP56PAIFMJKLC55E7CA)
+![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_60_0.png?token=AE5UC7ZEQN624IRZL5O4FXS57F6SE)
 
 
 We can also add new predicted targets to the test dataset, for exploratory data analysis purpose
@@ -1441,7 +1441,7 @@ plt.title('Impact cause per hours')
 plt.tight_layout()
 ```
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_64_0.png?token=AE5UC72EIWLJ6RFF326EXEK55E7F2)
+![](https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_64_0.png?token=AE5UC74MRLJC3B5O7IRZTHK57F6UK)
 
 
 Let's now view locations where different accident impacts occurs in the `test dataset`:
