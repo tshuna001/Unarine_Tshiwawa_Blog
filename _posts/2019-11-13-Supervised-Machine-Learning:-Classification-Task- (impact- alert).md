@@ -1,6 +1,6 @@
 ---
 layout: post
-author: 'Unarine Tshiwawa'
+author: "Unarine Tshiwawa"
 ---
 
 # 1. We shall start by defining the problem:

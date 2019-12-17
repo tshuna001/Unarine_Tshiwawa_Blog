@@ -794,7 +794,7 @@ plt.title('Cumulative explained variance')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_21_1.png?token=AE5UC74GFIBFY5HWAWG5XRC57ELZY)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_21_1.png?token=AE5UC76E7ICDO5BPTCRNKMK6AKO5I)
 
 
 Here we see that our two-dimensional projection will lose a lot of information (as measured by the explained variance) and that we’d need about 6 components to retain about 90$\%$ of the variance.
@@ -1145,7 +1145,7 @@ plt.ylabel('PCA2')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_29_1.png?token=AE5UC75AYWVRCMKAQF2KQKS57EMDQ)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_29_1.png?token=AE5UC7ZW33AGIF3QHKOWGNC6AKPBO)
 
 
 # Visualise data in 3D:
@@ -1174,7 +1174,7 @@ ax.set_zlabel("PCA3", fontsize=12)
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_31_1.png?token=AE5UC72CWBEDAVCLS7DXTKK57EMHE)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_31_1.png?token=AE5UC73OAI5FMFXS7ULDUKC6AKPF4)
 
 
 ### Let's consider some clustering algorithms:
@@ -1248,7 +1248,7 @@ plt.ylabel('Average within-cluster sum of squares')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_40_1.png?token=AE5UC77H6B3W477UTIWBRGK57EMKW)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_40_1.png?token=AE5UC7ZMY7BHTBOTHNB4F3K6AKPMC)
 
 
 It is important to scale the input features before you run K-Means, or else the clusters may be very stretched, and K-Means will perform poorly. However, scaling the features does not guarantee that all the clusters will be nice and spherical, but it generally improves things.
@@ -1300,7 +1300,7 @@ plt.ylabel('PCA2')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_44_1.png?token=AE5UC7ZMEPIB7QZTAJA64UC57EMN2)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_44_1.png?token=AE5UC764QKA4RTGC2EIRVN26AKPQU)
 
 
 
@@ -1328,7 +1328,7 @@ ax.set_zlabel("PCA3", fontsize=12)
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_46_1.png?token=AE5UC7YCNB2TABIUSJJO7DC57EMP6)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_46_1.png?token=AE5UC7726OFWESIPDPIUSTK6AKPV4)
 
 
 The figures above shows that, the dataset contain 3 groups of stars.
@@ -1356,7 +1356,7 @@ plt.tight_layout()
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_48_1.png?token=AE5UC75SAKPIKMYSUIMZ5S257EMSG)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_48_1.png?token=AE5UC76IHWNCIJOZ4IEWDHC6AKPZS)
 
 
 ## 2 Gaussian Mixture Model:
@@ -1436,7 +1436,7 @@ plt.show()
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_52_1.png?token=AE5UC725PTQ57ODXQYWJVT257EMUI)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_52_1.png?token=AE5UC73C2TXU5AOYJJSNUC26AKP6Q)
 
 
 `We shall take 3, as the optimal number of cluster: n_components = 3`
@@ -1507,7 +1507,7 @@ plt.ylabel('PCA2')
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_60_1.png?token=AE5UC73TTHWQYC52JNCBWA257EMWQ)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_60_1.png?token=AE5UC74U3IFXRAI6PJZB7EC6AKQCK)
 
 
 
@@ -1529,7 +1529,7 @@ ax.set_zlabel("PCA3", fontsize=12)
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_61_1.png?token=AE5UC72VVF7VEL57YKHNTZ257EMZG)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_61_1.png?token=AE5UC74JZLK2OETMNBJYKCS6AKQF4)
 
 
 The figure above shows that, the dataset contain 3 groups of stars.
@@ -1558,7 +1558,7 @@ plt.tight_layout()
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_63_1.png?token=AE5UC74EO6IFNRKYLTVPEGS57EM24)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_63_1.png?token=AE5UC77VXMWXA6OSKW446US6AKQKA)
 
 
 ### Conclusion from machine model:

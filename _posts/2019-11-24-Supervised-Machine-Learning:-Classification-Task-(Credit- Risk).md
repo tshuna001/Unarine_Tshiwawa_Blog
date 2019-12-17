@@ -926,11 +926,6 @@ pie
 ```
 
 
-
-
-
-
-
 ![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_20_1.png?token=AE5UC72EFF66FVNANGI22BS57GBMC)
 
 
