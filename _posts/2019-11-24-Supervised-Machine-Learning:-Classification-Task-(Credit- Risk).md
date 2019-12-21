@@ -926,7 +926,7 @@ pie
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_20_1.png?token=AE5UC72EFF66FVNANGI22BS57GBMC)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_20_1.png?token=AE5UC72Q4NMV6GWSVD6WKDK6A62QQ)
 
 
 NB: - One important thing to note, the dataset is imbalanced. This is an imbalanced class problem because there are significantly more clients who are good payers than bad payers!
@@ -1460,7 +1460,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_41_0.png?token=AE5UC76UTWCG7C7FWQ4GDBS57F75I)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_41_0.png?token=AE5UC77WSEEY2Q6VS32MRTK6A62UA)
 
 
 
@@ -1525,7 +1525,7 @@ plt.title('Receiver Operating Characteristic Curve, AUC = %0.4f' % auc1, size = 
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_46_1.png?token=AE5UC72ZGEE67JAH3AN6HNC57F77G)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_46_1.png?token=AE5UC7ZVUT6TUERIRQCCI7S6A62WQ)
 
 
 ### 2. Decision Tree
@@ -1549,7 +1549,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_48_0.png?token=AE5UC7ZJU6XG77C2ALCFUE257GABM)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_48_0.png?token=AE5UC7Y7FUYXHIXNBGT77OS6A62YW)
 
 
 
@@ -1611,7 +1611,7 @@ plt.title('Receiver Operating Characteristic Curve, AUC = %0.4f' % auc2, size = 
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_53_1.png?token=AE5UC75536RK4Z7T6JLMT7257GAEG)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_53_1.png?token=AE5UC7ZJG4HONDR5L5JJYAC6A6222)
 
 
 ## 3. Random Forest
@@ -1634,7 +1634,7 @@ plt.show()
 ```
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_55_0.png?token=AE5UC73C34ETAD6YBI4FGRC57GAMG)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_55_0.png?token=AE5UC73RKDWG4YZW4WVZFXK6A625A)
 
 
 
@@ -1696,7 +1696,7 @@ plt.title('Receiver Operating Characteristic Curve, AUC = %0.4f' % auc3, size = 
 
 
 
-![](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_60_1.png?token=AE5UC7ZXHTMDNXHOL2FFRGS57GAJE)
+![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_60_1.png?token=AE5UC74XUBU3XGX6TRLT7QS6A627C)
 
 
 ### Conclusions from Machine Learning Models
