@@ -21,6 +21,3 @@ github_username: tshuna001 #jekyll
 
 # Build settings
 markdown: kramdown
-
-theme:
-  minima
