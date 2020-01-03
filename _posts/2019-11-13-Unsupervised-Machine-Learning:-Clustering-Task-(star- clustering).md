@@ -793,9 +793,7 @@ plt.title('Cumulative explained variance')
 
 
 
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_21_1.png?token=AE5UC76E7ICDO5BPTCRNKMK6AKO5I)
-
+![png](https://drive.google.com/uc?export=view&id=1avTRT5wzfI3GgkUlPB1jJmNrAQ5dTgmp)
 
 Here we see that our two-dimensional projection will lose a lot of information (as measured by the explained variance) and that we’d need about 6 components to retain about 90$\%$ of the variance.
 
@@ -1145,7 +1143,7 @@ plt.ylabel('PCA2')
 
 
 
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_29_1.png?token=AE5UC7ZW33AGIF3QHKOWGNC6AKPBO)
+![png](https://drive.google.com/uc?export=view&id=1xTUX02Gmqa0XUvaCcKUcEguCouydVlTv)
 
 
 # Visualise data in 3D:
@@ -1174,7 +1172,9 @@ ax.set_zlabel("PCA3", fontsize=12)
 
 
 
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_31_1.png?token=AE5UC73OAI5FMFXS7ULDUKC6AKPF4)
+
+![png](https://drive.google.com/uc?export=view&id=1Am0qYRkgfE--FFejVNjGJcpvY6ajphzZ)
+
 
 
 ### Let's consider some clustering algorithms:
@@ -1248,8 +1248,8 @@ plt.ylabel('Average within-cluster sum of squares')
 
 
 
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_40_1.png?token=AE5UC7ZMY7BHTBOTHNB4F3K6AKPMC)
 
+![png](https://drive.google.com/uc?export=view&id=1BVH-tzCR8a-kj4Z4oAAVBx_22oTCQXlv)
 
 It is important to scale the input features before you run K-Means, or else the clusters may be very stretched, and K-Means will perform poorly. However, scaling the features does not guarantee that all the clusters will be nice and spherical, but it generally improves things.
 
@@ -1298,11 +1298,7 @@ plt.ylabel('PCA2')
     Text(0, 0.5, 'PCA2')
 
 
-
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_44_1.png?token=AE5UC764QKA4RTGC2EIRVN26AKPQU)
-
-
+![png](https://drive.google.com/uc?export=view&id=1-rPdBekgmRmwFsT6AwwewY7T8vkRWNaI)
 
 ```python
 
@@ -1326,10 +1322,7 @@ ax.set_zlabel("PCA3", fontsize=12)
     Text(0.5, 0, 'PCA3')
 
 
-
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_46_1.png?token=AE5UC7726OFWESIPDPIUSTK6AKPV4)
-
+![png](https://drive.google.com/uc?export=view&id=1kPWZV0KpKjqX8beGcR8oKtC8pn013meo)
 
 The figures above shows that, the dataset contain 3 groups of stars.
 
@@ -1356,7 +1349,7 @@ plt.tight_layout()
 
 
 
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_48_1.png?token=AE5UC76IHWNCIJOZ4IEWDHC6AKPZS)
+![png](https://drive.google.com/uc?export=view&id=1_6DWY-lkzxK_sPvdqh_2EhHPart0vw8D)
 
 
 ## 2 Gaussian Mixture Model:
@@ -1435,8 +1428,7 @@ plt.show()
     ----------------------------------------------------------------------------------------------------
 
 
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_52_1.png?token=AE5UC73C2TXU5AOYJJSNUC26AKP6Q)
+![png](https://drive.google.com/uc?export=view&id=1ZHfms0ngfCAwcEqUZW-W8uOwxClVyRsL)
 
 
 `We shall take 3, as the optimal number of cluster: n_components = 3`
@@ -1504,12 +1496,7 @@ plt.ylabel('PCA2')
 
     Text(0, 0.5, 'PCA2')
 
-
-
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_60_1.png?token=AE5UC74U3IFXRAI6PJZB7EC6AKQCK)
-
-
+![png](https://drive.google.com/uc?export=view&id=1BWe0HJGmoTqzpdaoHYIsS_8L4Zp109ke)
 
 ```python
 fig = plt.figure(figsize = (15, 10))
@@ -1526,10 +1513,8 @@ ax.set_zlabel("PCA3", fontsize=12)
 
     Text(0.5, 0, 'PCA3')
 
+![png](https://drive.google.com/uc?export=view&id=1TDl6MPf50z6KZeC-jzpqJHEPAzfUSax6)
 
-
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_61_1.png?token=AE5UC74JZLK2OETMNBJYKCS6AKQF4)
 
 
 The figure above shows that, the dataset contain 3 groups of stars.
@@ -1557,8 +1542,7 @@ plt.tight_layout()
     Name: clusterGMM, dtype: int64
 
 
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/the_stars_63_1.png?token=AE5UC77VXMWXA6OSKW446US6AKQKA)
+![png](https://drive.google.com/uc?export=view&id=1xnZPNRaFP18kcK2fmoUX0QT0DgHCfArq)
 
 
 ### Conclusion from machine model:

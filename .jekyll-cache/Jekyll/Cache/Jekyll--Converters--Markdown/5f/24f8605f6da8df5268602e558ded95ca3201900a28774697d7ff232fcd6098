@@ -1,4 +1,4 @@
-I",ã$<h1 id="1-we-shall-start-by-defining-the-problem">1. We shall start by defining the problem:</h1>
+I"7â$<h1 id="1-we-shall-start-by-defining-the-problem">1. We shall start by defining the problem:</h1>
 
 <p>We are given a dataset containing number of false accidents impacts that are labelled (by time, season, and location) and a test dataset that contain impacts that are not labelled.  In this exercise, we will use a model trained on the dataset containing false impacts to classify different kinds of impacts cause in the test dataset.</p>
 
@@ -241,7 +241,7 @@ dtype: int64
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_11_0.png?token=AE5UC7YHL245WBZW7JYXLY26A6ZAO" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1jtac1g6fh36pZ0Oz515jDr3dt-4N5_99" alt="png" /></p>
 
 <p>For each alert impact, we want to know how many accident happened per month in our dataset within stipulated time (2018-01-01 to 2018-08-13).  There is higher accident contribution from speedbump, potholes, car wash, and gravel road impact, respectively, to the total number of impacts.</p>
 
@@ -519,7 +519,7 @@ Name: alert_timestamp, dtype: object
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_22_0.png?token=AE5UC73M5C2CEAI3NBMPZAK6A6ZHQ" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1QStsTA-FVHVKjd4rEyxiiy8C-63wxbD1" alt="png" /></p>
 
 <p>We shall plot the locations of the impacts on a map.  folium will be used to view locations</p>
 
@@ -919,7 +919,7 @@ classifier.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_42_0.png?token=AE5UC777DKU4CKU7BU6CICC6A6ZPE" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1a0QheReGeBH831R-U8DY_reTjnCsjqsj" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">summ_conf1</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">pred1</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">target_names</span> <span class="o">=</span> <span class="n">target_names</span><span class="p">)</span>
 
@@ -967,7 +967,7 @@ weighted avg       0.91      0.91      0.91       744
 
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_45_0.png?token=AE5UC72QLPPVUJPDBXJV3YC6A6ZYE" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=12gojs0wMSc2_EpU870hait58eP_vdyPv" alt="png" /></p>
 
 <p>Letâ€™s look at summary of confusion matrix:</p>
 
@@ -1019,7 +1019,7 @@ weighted avg       0.97      0.97      0.97       744
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_49_0.png?token=AE5UC75X57GB4ZTDOGVBIFS6A6Z3O" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1ecdrAMzT-nnWd2429LJpCul3mSzb2iMB" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">target_names</span> <span class="o">=</span> <span class="n">order</span>
 
@@ -1216,7 +1216,7 @@ Name: cause, dtype: int64
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_60_0.png?token=AE5UC76L34J4XMYDIPK44MK6A6Z6S" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1NA_TRgg2JbhYdlgAQ-HEitk5GjVzpFZY" alt="png" /></p>
 
 <p>We can also add new predicted targets to the test dataset, for exploratory data analysis purpose</p>
 
@@ -1319,7 +1319,7 @@ Name: cause, dtype: int64
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_64_0.png?token=AE5UC72Y22T46VHS57YK7DS6A62EM" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1S7TmEFgFSXAXmjQhB1Na5ii2s4pija7h" alt="png" /></p>
 
 <p>Letâ€™s now view locations where different accident impacts occurs in the <code class="highlighter-rouge">test dataset</code>:</p>
 

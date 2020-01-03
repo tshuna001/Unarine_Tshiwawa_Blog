@@ -7,8 +7,8 @@
 </description>
     <link>http://localhost:4000/Unarine_Tshiwawa_Blog/</link>
     <atom:link href="http://localhost:4000/Unarine_Tshiwawa_Blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 21 Dec 2019 22:14:00 +0200</pubDate>
-    <lastBuildDate>Sat, 21 Dec 2019 22:14:00 +0200</lastBuildDate>
+    <pubDate>Fri, 03 Jan 2020 18:00:51 +0200</pubDate>
+    <lastBuildDate>Fri, 03 Jan 2020 18:00:51 +0200</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
@@ -882,7 +882,7 @@ Name: employment_status_clients, dtype: int64
 &lt;span class=&quot;n&quot;&gt;pie&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/loan_model_20_1.png?token=AE5UC72Q4NMV6GWSVD6WKDK6A62QQ&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1xG8moReGbckP5i_sjOCV9NjwNlVP6pdT&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;NB: - One important thing to note, the dataset is imbalanced. This is an imbalanced class problem because there are significantly more clients who are good payers than bad payers!&lt;/p&gt;
 
@@ -1380,7 +1380,7 @@ So we want the classifier that will achieve AUC value as close as possible to 1.
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/loan_model_41_0.png?token=AE5UC77WSEEY2Q6VS32MRTK6A62UA&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1fKy2mF3hwTfPqpAIipC1IZd1YqV-Bae-&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;summ_conf1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classification_report&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pred1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_names&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
@@ -1432,7 +1432,7 @@ weighted avg       0.68      0.82      0.74      3083
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0.5, 1.0, 'Receiver Operating Characteristic Curve, AUC = 0.5657')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/loan_model_46_1.png?token=AE5UC7ZVUT6TUERIRQCCI7S6A62WQ&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1IPltVx_PsbfDmvMy5ggdjwfimmLh_Dcx&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;2-decision-tree&quot;&gt;2. Decision Tree&lt;/h3&gt;
 
@@ -1452,7 +1452,7 @@ weighted avg       0.68      0.82      0.74      3083
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/loan_model_48_0.png?token=AE5UC7Y7FUYXHIXNBGT77OS6A62YW&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1BdrIaFWNhR6DcML4GGr6csy3YWAugtuY&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;summ_conf2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classification_report&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pred2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_names&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
@@ -1501,7 +1501,7 @@ weighted avg       0.94      0.94      0.94      3083
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0.5, 1.0, 'Receiver Operating Characteristic Curve, AUC = 0.9015')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/loan_model_53_1.png?token=AE5UC7ZJG4HONDR5L5JJYAC6A6222&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=10E_PS01r4P-YdcLeYfzqR_eJdNbQ5MLZ&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;3-random-forest&quot;&gt;3. Random Forest&lt;/h2&gt;
 
@@ -1520,7 +1520,7 @@ weighted avg       0.94      0.94      0.94      3083
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/loan_model_55_0.png?token=AE5UC73RKDWG4YZW4WVZFXK6A625A&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1leInVAYHdIfCRheYp7rq_w5Ivm4tX_cR&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;summ_conf3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classification_report&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pred3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_names&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
@@ -1569,7 +1569,7 @@ weighted avg       0.94      0.94      0.93      3083
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0.5, 1.0, 'Receiver Operating Characteristic Curve, AUC = 0.9745')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/loan_model_60_1.png?token=AE5UC74XUBU3XGX6TRLT7QS6A627C&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1kbpYv57zz_dmbiwLmjYNq-LVGnEF_vU6&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;conclusions-from-machine-learning-models&quot;&gt;Conclusions from Machine Learning Models&lt;/h3&gt;
 
@@ -2330,7 +2330,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0.5, 1.0, 'Cumulative explained variance')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_21_1.png?token=AE5UC76E7ICDO5BPTCRNKMK6AKO5I&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1avTRT5wzfI3GgkUlPB1jJmNrAQ5dTgmp&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here we see that our two-dimensional projection will lose a lot of information (as measured by the explained variance) and that we’d need about 6 components to retain about 90$\%$ of the variance.&lt;/p&gt;
 
@@ -2663,7 +2663,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0, 0.5, 'PCA2')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_29_1.png?token=AE5UC7ZW33AGIF3QHKOWGNC6AKPBO&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1xTUX02Gmqa0XUvaCcKUcEguCouydVlTv&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;visualise-data-in-3d&quot;&gt;Visualise data in 3D:&lt;/h1&gt;
 
@@ -2684,7 +2684,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0.5, 0, 'PCA3')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_31_1.png?token=AE5UC73OAI5FMFXS7ULDUKC6AKPF4&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1Am0qYRkgfE--FFejVNjGJcpvY6ajphzZ&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;lets-consider-some-clustering-algorithms&quot;&gt;Let’s consider some clustering algorithms:&lt;/h3&gt;
 
@@ -2743,7 +2743,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0, 0.5, 'Average within-cluster sum of squares')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_40_1.png?token=AE5UC7ZMY7BHTBOTHNB4F3K6AKPMC&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1BVH-tzCR8a-kj4Z4oAAVBx_22oTCQXlv&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It is important to scale the input features before you run K-Means, or else the clusters may be very stretched, and K-Means will perform poorly. However, scaling the features does not guarantee that all the clusters will be nice and spherical, but it generally improves things.&lt;/p&gt;
 
@@ -2779,7 +2779,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0, 0.5, 'PCA2')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_44_1.png?token=AE5UC764QKA4RTGC2EIRVN26AKPQU&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1-rPdBekgmRmwFsT6AwwewY7T8vkRWNaI&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -2797,7 +2797,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0.5, 0, 'PCA3')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_46_1.png?token=AE5UC7726OFWESIPDPIUSTK6AKPV4&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1kPWZV0KpKjqX8beGcR8oKtC8pn013meo&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The figures above shows that, the dataset contain 3 groups of stars.&lt;/p&gt;
 
@@ -2820,7 +2820,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 Name: clusterKM, dtype: int64
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_48_1.png?token=AE5UC76IHWNCIJOZ4IEWDHC6AKPZS&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1_6DWY-lkzxK_sPvdqh_2EhHPart0vw8D&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;2-gaussian-mixture-model&quot;&gt;2 Gaussian Mixture Model:&lt;/h2&gt;
 
@@ -2894,7 +2894,7 @@ Log-likelihood score for number of cluster(s) 9: 70.81234841423796
 ----------------------------------------------------------------------------------------------------
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_52_1.png?token=AE5UC73C2TXU5AOYJJSNUC26AKP6Q&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1ZHfms0ngfCAwcEqUZW-W8uOwxClVyRsL&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;We shall take 3, as the optimal number of cluster: n_components = 3&lt;/code&gt;&lt;/p&gt;
 
@@ -2947,7 +2947,7 @@ Log-likelihood score for number of cluster(s) 9: 70.81234841423796
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0, 0.5, 'PCA2')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_60_1.png?token=AE5UC74U3IFXRAI6PJZB7EC6AKQCK&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1BWe0HJGmoTqzpdaoHYIsS_8L4Zp109ke&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_subplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;111&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;projection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'3d'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -2961,7 +2961,7 @@ Log-likelihood score for number of cluster(s) 9: 70.81234841423796
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0.5, 0, 'PCA3')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_61_1.png?token=AE5UC74JZLK2OETMNBJYKCS6AKQF4&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1TDl6MPf50z6KZeC-jzpqJHEPAzfUSax6&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The figure above shows that, the dataset contain 3 groups of stars.&lt;/p&gt;
 
@@ -2985,7 +2985,7 @@ Log-likelihood score for number of cluster(s) 9: 70.81234841423796
 Name: clusterGMM, dtype: int64
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/the_stars_63_1.png?token=AE5UC77VXMWXA6OSKW446US6AKQKA&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1xnZPNRaFP18kcK2fmoUX0QT0DgHCfArq&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;conclusion-from-machine-model&quot;&gt;Conclusion from machine model:&lt;/h3&gt;
 
@@ -3246,7 +3246,7 @@ dtype: int64
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_11_0.png?token=AE5UC7YHL245WBZW7JYXLY26A6ZAO&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1jtac1g6fh36pZ0Oz515jDr3dt-4N5_99&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;For each alert impact, we want to know how many accident happened per month in our dataset within stipulated time (2018-01-01 to 2018-08-13).  There is higher accident contribution from speedbump, potholes, car wash, and gravel road impact, respectively, to the total number of impacts.&lt;/p&gt;
 
@@ -3524,7 +3524,7 @@ Name: alert_timestamp, dtype: object
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_22_0.png?token=AE5UC73M5C2CEAI3NBMPZAK6A6ZHQ&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1QStsTA-FVHVKjd4rEyxiiy8C-63wxbD1&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We shall plot the locations of the impacts on a map.  folium will be used to view locations&lt;/p&gt;
 
@@ -3924,7 +3924,7 @@ classifier.&lt;/p&gt;
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_42_0.png?token=AE5UC777DKU4CKU7BU6CICC6A6ZPE&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1a0QheReGeBH831R-U8DY_reTjnCsjqsj&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;summ_conf1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classification_report&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argmax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pred1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argmax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_names&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
@@ -3972,7 +3972,7 @@ weighted avg       0.91      0.91      0.91       744
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_45_0.png?token=AE5UC72QLPPVUJPDBXJV3YC6A6ZYE&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=12gojs0wMSc2_EpU870hait58eP_vdyPv&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Let’s look at summary of confusion matrix:&lt;/p&gt;
 
@@ -4024,7 +4024,7 @@ weighted avg       0.97      0.97      0.97       744
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_49_0.png?token=AE5UC75X57GB4ZTDOGVBIFS6A6Z3O&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1ecdrAMzT-nnWd2429LJpCul3mSzb2iMB&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;target_names&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;
 
@@ -4221,7 +4221,7 @@ Name: cause, dtype: int64
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_60_0.png?token=AE5UC76L34J4XMYDIPK44MK6A6Z6S&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1NA_TRgg2JbhYdlgAQ-HEitk5GjVzpFZY&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We can also add new predicted targets to the test dataset, for exploratory data analysis purpose&lt;/p&gt;
 
@@ -4324,7 +4324,7 @@ Name: cause, dtype: int64
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tight_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tshuna001/images/master/Impact_alert_64_0.png?token=AE5UC72Y22T46VHS57YK7DS6A62EM&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1S7TmEFgFSXAXmjQhB1Na5ii2s4pija7h&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Let’s now view locations where different accident impacts occurs in the &lt;code class=&quot;highlighter-rouge&quot;&gt;test dataset&lt;/code&gt;:&lt;/p&gt;
 

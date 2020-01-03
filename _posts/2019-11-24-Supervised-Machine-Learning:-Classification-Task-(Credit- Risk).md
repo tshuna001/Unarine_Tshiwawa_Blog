@@ -925,8 +925,7 @@ pie = df1['good_bad_flag'].value_counts().plot(kind = 'pie',explode=(0,0.1), aut
 pie
 ```
 
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_20_1.png?token=AE5UC72Q4NMV6GWSVD6WKDK6A62QQ)
+![png](https://drive.google.com/uc?export=view&id=1xG8moReGbckP5i_sjOCV9NjwNlVP6pdT)
 
 
 NB: - One important thing to note, the dataset is imbalanced. This is an imbalanced class problem because there are significantly more clients who are good payers than bad payers!
@@ -1459,8 +1458,7 @@ plt.show()
 
 ```
 
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_41_0.png?token=AE5UC77WSEEY2Q6VS32MRTK6A62UA)
+![png](https://drive.google.com/uc?export=view&id=1fKy2mF3hwTfPqpAIipC1IZd1YqV-Bae-)
 
 
 
@@ -1523,9 +1521,7 @@ plt.title('Receiver Operating Characteristic Curve, AUC = %0.4f' % auc1, size = 
     Text(0.5, 1.0, 'Receiver Operating Characteristic Curve, AUC = 0.5657')
 
 
-
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_46_1.png?token=AE5UC7ZVUT6TUERIRQCCI7S6A62WQ)
+![png](https://drive.google.com/uc?export=view&id=1IPltVx_PsbfDmvMy5ggdjwfimmLh_Dcx)
 
 
 ### 2. Decision Tree
@@ -1548,9 +1544,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-
-![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_48_0.png?token=AE5UC7Y7FUYXHIXNBGT77OS6A62YW)
-
+![png](https://drive.google.com/uc?export=view&id=1BdrIaFWNhR6DcML4GGr6csy3YWAugtuY)
 
 
 ```python
@@ -1611,8 +1605,7 @@ plt.title('Receiver Operating Characteristic Curve, AUC = %0.4f' % auc2, size = 
 
 
 
-![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_53_1.png?token=AE5UC7ZJG4HONDR5L5JJYAC6A6222)
-
+![png](https://drive.google.com/uc?export=view&id=10E_PS01r4P-YdcLeYfzqR_eJdNbQ5MLZ)
 
 ## 3. Random Forest
 
@@ -1634,8 +1627,7 @@ plt.show()
 ```
 
 
-![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_55_0.png?token=AE5UC73RKDWG4YZW4WVZFXK6A625A)
-
+![png](https://drive.google.com/uc?export=view&id=1leInVAYHdIfCRheYp7rq_w5Ivm4tX_cR)
 
 
 ```python
@@ -1696,7 +1688,7 @@ plt.title('Receiver Operating Characteristic Curve, AUC = %0.4f' % auc3, size = 
 
 
 
-![png](https://raw.githubusercontent.com/tshuna001/images/master/loan_model_60_1.png?token=AE5UC74XUBU3XGX6TRLT7QS6A627C)
+![png](https://drive.google.com/uc?export=view&id=1kbpYv57zz_dmbiwLmjYNq-LVGnEF_vU6)
 
 
 ### Conclusions from Machine Learning Models

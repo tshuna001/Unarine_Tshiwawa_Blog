@@ -1,4 +1,4 @@
-I"u$<h3 id="1-identifying-the-problem">1. Identifying the problem:</h3>
+I"�!<h3 id="1-identifying-the-problem">1. Identifying the problem:</h3>
 
 <p>In this task, I seek to demonstrate how unsupervised learning machine leaning can be used in an unlabelled dataset.  Just like in classification, each instance gets assigned to a group. However, this is an unsupervised task.</p>
 
@@ -741,7 +741,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5, 1.0, 'Cumulative explained variance')
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_21_1.png?token=AE5UC76E7ICDO5BPTCRNKMK6AKO5I" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1avTRT5wzfI3GgkUlPB1jJmNrAQ5dTgmp" alt="png" /></p>
 
 <p>Here we see that our two-dimensional projection will lose a lot of information (as measured by the explained variance) and that we’d need about 6 components to retain about 90$\%$ of the variance.</p>
 
@@ -1074,7 +1074,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0, 0.5, 'PCA2')
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_29_1.png?token=AE5UC7ZW33AGIF3QHKOWGNC6AKPBO" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1xTUX02Gmqa0XUvaCcKUcEguCouydVlTv" alt="png" /></p>
 
 <h1 id="visualise-data-in-3d">Visualise data in 3D:</h1>
 
@@ -1095,7 +1095,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5, 0, 'PCA3')
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_31_1.png?token=AE5UC73OAI5FMFXS7ULDUKC6AKPF4" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1Am0qYRkgfE--FFejVNjGJcpvY6ajphzZ" alt="png" /></p>
 
 <h3 id="lets-consider-some-clustering-algorithms">Let’s consider some clustering algorithms:</h3>
 
@@ -1154,7 +1154,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0, 0.5, 'Average within-cluster sum of squares')
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_40_1.png?token=AE5UC7ZMY7BHTBOTHNB4F3K6AKPMC" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1BVH-tzCR8a-kj4Z4oAAVBx_22oTCQXlv" alt="png" /></p>
 
 <p>It is important to scale the input features before you run K-Means, or else the clusters may be very stretched, and K-Means will perform poorly. However, scaling the features does not guarantee that all the clusters will be nice and spherical, but it generally improves things.</p>
 
@@ -1190,7 +1190,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0, 0.5, 'PCA2')
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_44_1.png?token=AE5UC764QKA4RTGC2EIRVN26AKPQU" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1-rPdBekgmRmwFsT6AwwewY7T8vkRWNaI" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
@@ -1208,7 +1208,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5, 0, 'PCA3')
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_46_1.png?token=AE5UC7726OFWESIPDPIUSTK6AKPV4" alt="png" /></p>
+<p><img src="images/the_stars_46_1" alt="png" /></p>
 
 <p>The figures above shows that, the dataset contain 3 groups of stars.</p>
 
@@ -1231,7 +1231,7 @@ principal component (PCA2) is orthogonal to the first principal component–all 
 Name: clusterKM, dtype: int64
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_48_1.png?token=AE5UC76IHWNCIJOZ4IEWDHC6AKPZS" alt="png" /></p>
+<p><img src="images/the_stars_48_1.png" alt="png" /></p>
 
 <h2 id="2-gaussian-mixture-model">2 Gaussian Mixture Model:</h2>
 
@@ -1305,7 +1305,7 @@ Log-likelihood score for number of cluster(s) 9: 70.81234841423796
 ----------------------------------------------------------------------------------------------------
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_52_1.png?token=AE5UC73C2TXU5AOYJJSNUC26AKP6Q" alt="png" /></p>
+<p><img src="images/the_stars_52_1.png" alt="png" /></p>
 
 <p><code class="highlighter-rouge">We shall take 3, as the optimal number of cluster: n_components = 3</code></p>
 
@@ -1358,7 +1358,7 @@ Log-likelihood score for number of cluster(s) 9: 70.81234841423796
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0, 0.5, 'PCA2')
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_60_1.png?token=AE5UC74U3IFXRAI6PJZB7EC6AKQCK" alt="png" /></p>
+<p><img src="images/the_stars_60_1.png" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span> <span class="o">=</span> <span class="s">'3d'</span><span class="p">)</span>
@@ -1372,7 +1372,7 @@ Log-likelihood score for number of cluster(s) 9: 70.81234841423796
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5, 0, 'PCA3')
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_61_1.png?token=AE5UC74JZLK2OETMNBJYKCS6AKQF4" alt="png" /></p>
+<p><img src="images/the_stars_61_1.png" alt="png" /></p>
 
 <p>The figure above shows that, the dataset contain 3 groups of stars.</p>
 
@@ -1396,7 +1396,7 @@ Log-likelihood score for number of cluster(s) 9: 70.81234841423796
 Name: clusterGMM, dtype: int64
 </code></pre></div></div>
 
-<p><img src="https://raw.githubusercontent.com/tshuna001/images/master/the_stars_63_1.png?token=AE5UC77VXMWXA6OSKW446US6AKQKA" alt="png" /></p>
+<p><img src="images/the_stars_63_1.png" alt="png" /></p>
 
 <h3 id="conclusion-from-machine-model">Conclusion from machine model:</h3>
 
