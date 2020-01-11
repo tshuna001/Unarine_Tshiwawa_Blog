@@ -1,0 +1,887 @@
+I"Z�<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span><span class="p">;</span> <span class="n">sns</span><span class="o">.</span><span class="nb">set</span><span class="p">(</span><span class="s">'notebook'</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pandas_profiling</span>
+</code></pre></div></div>
+
+<h3 id="dataset">Dataset:</h3>
+
+<p>Define the problem: We want to establish linear relationship between minimum temperature and maximum temperature in Barajas Airport in Madrid, between 1997 and 2015. The dataset in this work comes from <a href="https://www.kaggle.com/juliansimon/weather_madrid_lemd_1997_2015.csv">Kaggle</a></p>
+
+<h4 id="main-point-we-are-trying-to-build-a-linear-model-that-will-predict-maximum-temperature-from-minimum-temperature">Main point: we are trying to build a linear model that will predict maximum temperature from minimum temperature.</h4>
+
+<p>Clearly, we see that this is a supervised machine leaning - regression - type of a problem.  An output to this problem is a continuous quantity.</p>
+
+<h3 id="read-dataset">Read dataset</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">file</span> <span class="o">=</span> <span class="s">'/home/unarine/Downloads/weather_madrid_lemd_1997_2015.csv.zip'</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">compression</span> <span class="o">=</span> <span class="s">'zip'</span><span class="p">)</span>
+
+<span class="n">df1</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 6812 entries, 0 to 6811
+Data columns (total 23 columns):
+CET                            6812 non-null object
+Max TemperatureC               6810 non-null float64
+Mean TemperatureC              6809 non-null float64
+Min TemperatureC               6810 non-null float64
+Dew PointC                     6810 non-null float64
+MeanDew PointC                 6810 non-null float64
+Min DewpointC                  6810 non-null float64
+Max Humidity                   6810 non-null float64
+ Mean Humidity                 6810 non-null float64
+ Min Humidity                  6810 non-null float64
+ Max Sea Level PressurehPa     6812 non-null int64
+ Mean Sea Level PressurehPa    6812 non-null int64
+ Min Sea Level PressurehPa     6812 non-null int64
+ Max VisibilityKm              5872 non-null float64
+ Mean VisibilityKm             5872 non-null float64
+ Min VisibilitykM              5872 non-null float64
+ Max Wind SpeedKm/h            6812 non-null int64
+ Mean Wind SpeedKm/h           6812 non-null int64
+ Max Gust SpeedKm/h            3506 non-null float64
+Precipitationmm                6812 non-null float64
+ CloudCover                    5440 non-null float64
+ Events                        1798 non-null object
+WindDirDegrees                 6812 non-null int64
+dtypes: float64(15), int64(6), object(2)
+memory usage: 1.2+ MB
+
+
+
+None
+</code></pre></div></div>
+
+<p>Shape of dataset:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df1</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(6812, 23)
+</code></pre></div></div>
+
+<p>Features of each instance in the dataset:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df1</span><span class="o">.</span><span class="n">columns</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Index(['CET', 'Max TemperatureC', 'Mean TemperatureC', 'Min TemperatureC',
+       'Dew PointC', 'MeanDew PointC', 'Min DewpointC', 'Max Humidity',
+       ' Mean Humidity', ' Min Humidity', ' Max Sea Level PressurehPa',
+       ' Mean Sea Level PressurehPa', ' Min Sea Level PressurehPa',
+       ' Max VisibilityKm', ' Mean VisibilityKm', ' Min VisibilitykM',
+       ' Max Wind SpeedKm/h', ' Mean Wind SpeedKm/h', ' Max Gust SpeedKm/h',
+       'Precipitationmm', ' CloudCover', ' Events', 'WindDirDegrees'],
+      dtype='object')
+</code></pre></div></div>
+
+<p>Let’s view the first few rows in the dataframe:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CET</th>
+      <th>Max TemperatureC</th>
+      <th>Mean TemperatureC</th>
+      <th>Min TemperatureC</th>
+      <th>Dew PointC</th>
+      <th>MeanDew PointC</th>
+      <th>Min DewpointC</th>
+      <th>Max Humidity</th>
+      <th>Mean Humidity</th>
+      <th>Min Humidity</th>
+      <th>...</th>
+      <th>Max VisibilityKm</th>
+      <th>Mean VisibilityKm</th>
+      <th>Min VisibilitykM</th>
+      <th>Max Wind SpeedKm/h</th>
+      <th>Mean Wind SpeedKm/h</th>
+      <th>Max Gust SpeedKm/h</th>
+      <th>Precipitationmm</th>
+      <th>CloudCover</th>
+      <th>Events</th>
+      <th>WindDirDegrees</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1997-1-1</td>
+      <td>7.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>100.0</td>
+      <td>95.0</td>
+      <td>76.0</td>
+      <td>...</td>
+      <td>10.0</td>
+      <td>9.0</td>
+      <td>4.0</td>
+      <td>13</td>
+      <td>6</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>NaN</td>
+      <td>229</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1997-1-2</td>
+      <td>7.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>100.0</td>
+      <td>92.0</td>
+      <td>71.0</td>
+      <td>...</td>
+      <td>10.0</td>
+      <td>9.0</td>
+      <td>4.0</td>
+      <td>26</td>
+      <td>8</td>
+      <td>47.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>Rain</td>
+      <td>143</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1997-1-3</td>
+      <td>5.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>-1.0</td>
+      <td>100.0</td>
+      <td>85.0</td>
+      <td>70.0</td>
+      <td>...</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>7.0</td>
+      <td>27</td>
+      <td>19</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>Rain-Snow</td>
+      <td>256</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1997-1-4</td>
+      <td>7.0</td>
+      <td>3.0</td>
+      <td>-1.0</td>
+      <td>-2.0</td>
+      <td>-3.0</td>
+      <td>-4.0</td>
+      <td>86.0</td>
+      <td>63.0</td>
+      <td>49.0</td>
+      <td>...</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>27</td>
+      <td>19</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>284</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1997-1-5</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>-3.0</td>
+      <td>100.0</td>
+      <td>95.0</td>
+      <td>86.0</td>
+      <td>...</td>
+      <td>10.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>14</td>
+      <td>6</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>Snow</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1997-1-6</td>
+      <td>7.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>-1.0</td>
+      <td>-3.0</td>
+      <td>100.0</td>
+      <td>82.0</td>
+      <td>57.0</td>
+      <td>...</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>11</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1997-1-7</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>-2.0</td>
+      <td>1.0</td>
+      <td>-1.0</td>
+      <td>-3.0</td>
+      <td>100.0</td>
+      <td>93.0</td>
+      <td>75.0</td>
+      <td>...</td>
+      <td>10.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>6</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>Snow</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1997-1-8</td>
+      <td>8.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>7.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>100.0</td>
+      <td>96.0</td>
+      <td>87.0</td>
+      <td>...</td>
+      <td>10.0</td>
+      <td>8.0</td>
+      <td>4.0</td>
+      <td>26</td>
+      <td>8</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>Rain</td>
+      <td>273</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 23 columns</p>
+</div>
+
+<p>Correlations:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df1</span><span class="o">.</span><span class="n">corr</span><span class="p">()[</span><span class="s">'Max TemperatureC'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Max TemperatureC               1.000000
+Mean TemperatureC              0.970983
+Min TemperatureC               0.856143
+Dew PointC                     0.583509
+MeanDew PointC                 0.495857
+Min DewpointC                  0.329547
+Max Humidity                  -0.718184
+ Mean Humidity                -0.805961
+ Min Humidity                 -0.761490
+ Max Sea Level PressurehPa    -0.081856
+ Mean Sea Level PressurehPa   -0.011203
+ Min Sea Level PressurehPa    -0.042676
+ Max VisibilityKm              0.126435
+ Mean VisibilityKm             0.299083
+ Min VisibilitykM              0.388285
+ Max Wind SpeedKm/h            0.025244
+ Mean Wind SpeedKm/h          -0.073119
+ Max Gust SpeedKm/h           -0.135634
+Precipitationmm               -0.068196
+ CloudCover                   -0.449610
+WindDirDegrees                 0.000365
+Name: Max TemperatureC, dtype: float64
+</code></pre></div></div>
+
+<p>Basic statistics</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Max TemperatureC</th>
+      <th>Mean TemperatureC</th>
+      <th>Min TemperatureC</th>
+      <th>Dew PointC</th>
+      <th>MeanDew PointC</th>
+      <th>Min DewpointC</th>
+      <th>Max Humidity</th>
+      <th>Mean Humidity</th>
+      <th>Min Humidity</th>
+      <th>Max Sea Level PressurehPa</th>
+      <th>...</th>
+      <th>Min Sea Level PressurehPa</th>
+      <th>Max VisibilityKm</th>
+      <th>Mean VisibilityKm</th>
+      <th>Min VisibilitykM</th>
+      <th>Max Wind SpeedKm/h</th>
+      <th>Mean Wind SpeedKm/h</th>
+      <th>Max Gust SpeedKm/h</th>
+      <th>Precipitationmm</th>
+      <th>CloudCover</th>
+      <th>WindDirDegrees</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>6810.000000</td>
+      <td>6809.000000</td>
+      <td>6810.000000</td>
+      <td>6810.000000</td>
+      <td>6810.000000</td>
+      <td>6810.000000</td>
+      <td>6810.000000</td>
+      <td>6810.000000</td>
+      <td>6810.000000</td>
+      <td>6812.000000</td>
+      <td>...</td>
+      <td>6812.000000</td>
+      <td>5872.000000</td>
+      <td>5872.000000</td>
+      <td>5872.000000</td>
+      <td>6812.000000</td>
+      <td>6812.000000</td>
+      <td>3506.000000</td>
+      <td>6812.000000</td>
+      <td>5440.000000</td>
+      <td>6812.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>21.039648</td>
+      <td>14.658687</td>
+      <td>8.640529</td>
+      <td>8.120705</td>
+      <td>4.976211</td>
+      <td>1.451248</td>
+      <td>81.139354</td>
+      <td>57.971366</td>
+      <td>34.729369</td>
+      <td>1020.529360</td>
+      <td>...</td>
+      <td>1015.217410</td>
+      <td>14.644074</td>
+      <td>11.719857</td>
+      <td>9.134877</td>
+      <td>21.953171</td>
+      <td>9.170728</td>
+      <td>43.988306</td>
+      <td>0.111182</td>
+      <td>3.206066</td>
+      <td>197.234586</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>8.867187</td>
+      <td>7.580461</td>
+      <td>6.837626</td>
+      <td>4.741067</td>
+      <td>4.654270</td>
+      <td>4.909705</td>
+      <td>17.531839</td>
+      <td>19.675744</td>
+      <td>19.320359</td>
+      <td>6.235941</td>
+      <td>...</td>
+      <td>6.944745</td>
+      <td>8.770024</td>
+      <td>5.592324</td>
+      <td>5.075065</td>
+      <td>9.903914</td>
+      <td>5.110013</td>
+      <td>12.252462</td>
+      <td>0.967174</td>
+      <td>1.808948</td>
+      <td>119.872777</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>-3.000000</td>
+      <td>-10.000000</td>
+      <td>-12.000000</td>
+      <td>-15.000000</td>
+      <td>-22.000000</td>
+      <td>16.000000</td>
+      <td>15.000000</td>
+      <td>4.000000</td>
+      <td>994.000000</td>
+      <td>...</td>
+      <td>965.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>19.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>-1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>13.000000</td>
+      <td>8.000000</td>
+      <td>3.000000</td>
+      <td>5.000000</td>
+      <td>2.000000</td>
+      <td>-2.000000</td>
+      <td>68.000000</td>
+      <td>41.000000</td>
+      <td>19.000000</td>
+      <td>1017.000000</td>
+      <td>...</td>
+      <td>1011.000000</td>
+      <td>10.000000</td>
+      <td>10.000000</td>
+      <td>7.000000</td>
+      <td>14.000000</td>
+      <td>6.000000</td>
+      <td>35.000000</td>
+      <td>0.000000</td>
+      <td>2.000000</td>
+      <td>66.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>20.000000</td>
+      <td>14.000000</td>
+      <td>9.000000</td>
+      <td>8.000000</td>
+      <td>6.000000</td>
+      <td>2.000000</td>
+      <td>87.000000</td>
+      <td>59.000000</td>
+      <td>32.000000</td>
+      <td>1020.000000</td>
+      <td>...</td>
+      <td>1015.000000</td>
+      <td>10.000000</td>
+      <td>10.000000</td>
+      <td>10.000000</td>
+      <td>21.000000</td>
+      <td>8.000000</td>
+      <td>42.000000</td>
+      <td>0.000000</td>
+      <td>3.000000</td>
+      <td>223.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>29.000000</td>
+      <td>21.000000</td>
+      <td>14.000000</td>
+      <td>12.000000</td>
+      <td>8.000000</td>
+      <td>5.000000</td>
+      <td>94.000000</td>
+      <td>74.000000</td>
+      <td>47.750000</td>
+      <td>1024.000000</td>
+      <td>...</td>
+      <td>1019.000000</td>
+      <td>10.000000</td>
+      <td>10.000000</td>
+      <td>10.000000</td>
+      <td>27.000000</td>
+      <td>11.000000</td>
+      <td>52.000000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+      <td>299.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>41.000000</td>
+      <td>32.000000</td>
+      <td>28.000000</td>
+      <td>20.000000</td>
+      <td>16.000000</td>
+      <td>14.000000</td>
+      <td>100.000000</td>
+      <td>100.000000</td>
+      <td>100.000000</td>
+      <td>1047.000000</td>
+      <td>...</td>
+      <td>1041.000000</td>
+      <td>31.000000</td>
+      <td>31.000000</td>
+      <td>31.000000</td>
+      <td>182.000000</td>
+      <td>39.000000</td>
+      <td>103.000000</td>
+      <td>32.000000</td>
+      <td>8.000000</td>
+      <td>360.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 21 columns</p>
+</div>
+
+<h2 id="exploratory-data-analysis">Exploratory Data Analysis</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df1</span><span class="p">[</span><span class="s">' Events'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([nan, 'Rain', 'Rain-Snow', 'Snow', 'Fog', 'Fog-Rain',
+       'Rain-Thunderstorm', 'Thunderstorm', 'Rain-Hail-Thunderstorm',
+       'Fog-Thunderstorm', 'Tornado', 'Fog-Rain-Thunderstorm',
+       'Fog-Rain-Snow', 'Fog-Snow', 'Rain-Snow-Thunderstorm', 'Rain-Hail'],
+      dtype=object)
+</code></pre></div></div>
+
+<p>Date:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display</span><span class="p">(</span><span class="s">'Beginning date:'</span><span class="p">,</span> <span class="n">df1</span><span class="p">[</span><span class="s">'CET'</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s">'End date:'</span><span class="p">,</span> <span class="n">df1</span><span class="p">[</span><span class="s">'CET'</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">:])</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'Beginning date:'
+
+
+
+'1997-1-1'
+
+
+
+'End date:'
+
+
+
+6811    2015-12-31
+Name: CET, dtype: object
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df1</span><span class="p">[</span><span class="s">' Events'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s">'bar'</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">'Weather event'</span><span class="p">,</span> <span class="n">rot</span> <span class="o">=</span> <span class="mi">90</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">df1</span><span class="p">[</span><span class="s">' Events'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s">'pie'</span><span class="p">,</span>
+                                 <span class="n">autopct</span><span class="o">=</span><span class="s">'</span><span class="si">%1.2</span><span class="s">f</span><span class="si">%%</span><span class="s">'</span><span class="p">,</span>
+                                 <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                 <span class="n">title</span> <span class="o">=</span> <span class="s">'Weather event'</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">legend</span> <span class="o">=</span> <span class="s">'bbox_to_anchor=(1.5, 2)'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1nY8LU2zM8GMDSQVvu8AVAQa9zQ369CZw" alt="png" /></p>
+
+<ul>
+  <li>Madrid has on average only ~ 63.4 % precipitation from 1997 - 2015</li>
+</ul>
+
+<p>Imputing nan values:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="nb">sum</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CET                               0
+Max TemperatureC                  2
+Mean TemperatureC                 3
+Min TemperatureC                  2
+Dew PointC                        2
+MeanDew PointC                    2
+Min DewpointC                     2
+Max Humidity                      2
+ Mean Humidity                    2
+ Min Humidity                     2
+ Max Sea Level PressurehPa        0
+ Mean Sea Level PressurehPa       0
+ Min Sea Level PressurehPa        0
+ Max VisibilityKm               940
+ Mean VisibilityKm              940
+ Min VisibilitykM               940
+ Max Wind SpeedKm/h               0
+ Mean Wind SpeedKm/h              0
+ Max Gust SpeedKm/h            3306
+Precipitationmm                   0
+ CloudCover                    1372
+ Events                        5014
+WindDirDegrees                    0
+dtype: int64
+</code></pre></div></div>
+
+<h3 id="-recall-the-goal-is-to-use-minimum-temperature-to-predict-maximum-temperature-in-barajas-airport---madrid"><font color="darkgreen"> Recall, the goal is to use minimum temperature to predict maximum temperature in Barajas Airport - Madrid</font></h3>
+
+<p>We shall replace nan values with the median of the column for both features:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s">"Min TemperatureC"</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s">"Min TemperatureC"</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()))</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s">"Max TemperatureC"</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s">"Max TemperatureC"</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(6812,) (6812,)
+</code></pre></div></div>
+
+<p>Let’s make some plots:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'.k'</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">"MaxTemp vs MinTemp"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"MinTemp"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"MaxTemp"</span><span class="p">)</span>
+
+
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0, 0.5, 'MaxTemp')
+</code></pre></div></div>
+
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1aBs9we7ViC2I9GD_EdYAS1iU0U3Y9HD_" alt="png" /></p>
+
+<p>Note: Looking at the figure above, it appears that there is some sort of linear relationship between minimum and maximum temperature.</p>
+
+<p>Let’s try to inspect the maximum temperature:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f37a623df98&gt;
+</code></pre></div></div>
+
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1W-gbxg2ZcsEBgwbyFuKWUjcI8CvYgdmp" alt="png" /></p>
+
+<h2 id="data-splicing">Data Splicing</h2>
+
+<p>We are going to split the data into two sets -  80$\%$ train set and 20$\%$ test set.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1">#transform from row vector to column vector
+</span><span class="n">xx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+<span class="c1">#splicing
+</span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>Let’s check the size of all sets:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>((5449, 1), (1363, 1))
+</code></pre></div></div>
+
+<h2 id="machine-learning-model">Machine Learning model</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1">#training the algorithm
+</span><span class="n">LR</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1">#To retrieve the intercept
+</span><span class="k">print</span><span class="p">(</span><span class="s">"intercept :"</span><span class="p">,</span> <span class="n">LR</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"coefficient :"</span><span class="p">,</span> <span class="n">LR</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>intercept : [11.44633278]
+coefficient : [[1.11300363]]
+</code></pre></div></div>
+
+<p>Let’s make prediction: how accurately the algorithm predict the percentage score</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y_pred</span> <span class="o">=</span> <span class="n">LR</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h2 id="model-evaluation">Model evaluation</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Mean Absolute Error:"</span><span class="p">,</span> <span class="n">metrics</span><span class="o">.</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Mean Squared Error:"</span><span class="p">,</span> <span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Root Mean Square Error:"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mean Absolute Error: 3.8983539895849852
+Mean Squared Error: 21.24457217559518
+Root Mean Square Error: 4.609183460830691
+</code></pre></div></div>
+
+<p>creating new dataframe consist of actual and predicted values:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">"Actual"</span><span class="p">:</span> <span class="n">y_test</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="s">"Predicted"</span><span class="p">:</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">flatten</span><span class="p">()})</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s"> --------------------Let us view few rows in new dataframe------------------'</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> --------------------Let us view few rows in new dataframe------------------
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Actual</th>
+      <th>Predicted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>17.0</td>
+      <td>13.672340</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>28.0</td>
+      <td>20.350362</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>24.0</td>
+      <td>30.367395</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>27.0</td>
+      <td>22.576369</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8.0</td>
+      <td>12.559336</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Let’s view few actual and predicted values:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span> <span class="o">=</span> <span class="s">'major'</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s">'-'</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="s">'0.5'</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'green'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Comparison of Predictated and Actual values'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Variables'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Values'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0, 0.5, 'Values')
+</code></pre></div></div>
+
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1ieJFDWNen8yJxd1JNlibxzwFQm5R51fm" alt="png" /></p>
+
+<p>Let’s view our linear model</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'gray'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'red'</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"MinTemp"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"PredTemp"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1jLSBLxgefAbnppIXRaIa4dx50_BBj0Gr" alt="png" /></p>
+:ET
