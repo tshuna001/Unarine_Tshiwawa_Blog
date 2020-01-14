@@ -3,7 +3,6 @@ layout: post
 author: "Unarine Tshiwawa"
 ---
 
-
 ```python
 import pandas as pd
 import matplotlib.pylab as plt
@@ -34,6 +33,10 @@ df = pd.read_csv(file, compression = 'zip')
 
 df1 = df.copy()
 ```
+
+Dataset information:
+
+The info() method is useful to get a quick description of the data
 
 
 ```python
@@ -74,6 +77,10 @@ display(df1.info())
     None
 
 
+- NB: There are 6812 instances in the dataset, which means that it is very small by Machine Learning standards, but it’s perfect to get started.
+
+- All attributes are numerical, except the `CET` and `Events` field
+
 Shape of dataset:
 
 
@@ -109,7 +116,9 @@ df1.columns
 
 
 
-Let's view the first few rows in the dataframe:
+### Take a Quick Look at the Data Structure
+
+Let’s take a look at the top five rows using the DataFrame’s head() method
 
 
 ```python
@@ -357,42 +366,37 @@ display(df1.head(8))
 </div>
 
 
-Correlations:
+When looking at the top five rows, you probably noticed that the inputs in the `Events` column are repetitive,
+which means that it is probably a categorical attribute. So we can find out what categories exist and how many weather events belong to each category by using the value_counts() method:
 
 
 ```python
-df1.corr()['Max TemperatureC']
+df1[' Events'].value_counts()
 ```
 
 
 
 
-    Max TemperatureC               1.000000
-    Mean TemperatureC              0.970983
-    Min TemperatureC               0.856143
-    Dew PointC                     0.583509
-    MeanDew PointC                 0.495857
-    Min DewpointC                  0.329547
-    Max Humidity                  -0.718184
-     Mean Humidity                -0.805961
-     Min Humidity                 -0.761490
-     Max Sea Level PressurehPa    -0.081856
-     Mean Sea Level PressurehPa   -0.011203
-     Min Sea Level PressurehPa    -0.042676
-     Max VisibilityKm              0.126435
-     Mean VisibilityKm             0.299083
-     Min VisibilitykM              0.388285
-     Max Wind SpeedKm/h            0.025244
-     Mean Wind SpeedKm/h          -0.073119
-     Max Gust SpeedKm/h           -0.135634
-    Precipitationmm               -0.068196
-     CloudCover                   -0.449610
-    WindDirDegrees                 0.000365
-    Name: Max TemperatureC, dtype: float64
+    Rain                      1140
+    Rain-Thunderstorm          247
+    Fog                        233
+    Fog-Rain                    69
+    Thunderstorm                45
+    Rain-Snow                   33
+    Snow                        14
+    Rain-Hail-Thunderstorm       7
+    Fog-Snow                     4
+    Tornado                      1
+    Rain-Hail                    1
+    Fog-Rain-Thunderstorm        1
+    Rain-Snow-Thunderstorm       1
+    Fog-Thunderstorm             1
+    Fog-Rain-Snow                1
+    Name:  Events, dtype: int64
 
 
 
-Basic statistics
+Basic statistics: Summary of each numerical attribute.
 
 
 ```python
@@ -640,6 +644,54 @@ display(df1.describe())
 </div>
 
 
+The count , mean , min , and max rows are self-explanatory.  Note that the null values are ignored (so, for example, count of `Max TemperatureC`is 6810, not 6812). The std row shows the standard deviation, which measures how dispersed the values are. The 25%, 50%, and 75% rows show the corresponding percentiles: a percentile indicates the value below which a given percentage of observations in a group of observations falls
+
+### Looking for Correlations:
+
+Since the dataset is not too large, you can easily compute the standard correlation coefficient (also called Pearson’s r) between every pair of attributes using the corr() method:
+
+
+```python
+corr_matrix = df1.corr()
+
+corr_matrix["Max TemperatureC"].sort_values(ascending=False)
+```
+
+
+
+
+    Max TemperatureC               1.000000
+    Mean TemperatureC              0.970983
+    Min TemperatureC               0.856143
+    Dew PointC                     0.583509
+    MeanDew PointC                 0.495857
+     Min VisibilitykM              0.388285
+    Min DewpointC                  0.329547
+     Mean VisibilityKm             0.299083
+     Max VisibilityKm              0.126435
+     Max Wind SpeedKm/h            0.025244
+    WindDirDegrees                 0.000365
+     Mean Sea Level PressurehPa   -0.011203
+     Min Sea Level PressurehPa    -0.042676
+    Precipitationmm               -0.068196
+     Mean Wind SpeedKm/h          -0.073119
+     Max Sea Level PressurehPa    -0.081856
+     Max Gust SpeedKm/h           -0.135634
+     CloudCover                   -0.449610
+    Max Humidity                  -0.718184
+     Min Humidity                 -0.761490
+     Mean Humidity                -0.805961
+    Name: Max TemperatureC, dtype: float64
+
+
+
+The correlation coefficient ranges from –1 to 1. When it is close to 1, it means that there is a strong positive correlation.  When the coefficient is close to –1, it means that there is a strong negative correlation.  Finally, coefficients close to zero mean that there is no linear correlation
+
+
+```python
+
+```
+
 ## Exploratory Data Analysis
 
 
@@ -682,10 +734,50 @@ display('Beginning date:', df1['CET'][0], 'End date:', df1['CET'][-1:])
     Name: CET, dtype: object
 
 
+A histogram for each numerical attribute:
+
 
 ```python
-
+df1.hist(bins=50, figsize=(20,15))
 ```
+
+
+
+
+    array([[<matplotlib.axes._subplots.AxesSubplot object at 0x7f1696c43278>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f1696479438>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f169649fa90>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f169644f128>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16963f4780>],
+           [<matplotlib.axes._subplots.AxesSubplot object at 0x7f169641acc0>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16963cb358>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16963709e8>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f1696370a20>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16963446a0>],
+           [<matplotlib.axes._subplots.AxesSubplot object at 0x7f16962ebcf8>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f1696319390>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16962c09e8>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f169626f080>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16962956d8>],
+           [<matplotlib.axes._subplots.AxesSubplot object at 0x7f169623ad30>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16961ec3c8>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f1696210a20>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16961bf0b8>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16961e4710>],
+           [<matplotlib.axes._subplots.AxesSubplot object at 0x7f1696181080>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16961a09e8>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f169614e390>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16960f4cf8>,
+            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16961216a0>]],
+          dtype=object)
+
+
+
+
+
+![png](https://drive.google.com/uc?export=view&id=1Olv2HGjwXuN-3B-gykD-L0jrQ2PeiRhh)
+
+Bar plot for categorical attribute:
 
 
 ```python
@@ -704,7 +796,7 @@ plt.tight_layout()
 ```
 
 
-![png](https://drive.google.com/uc?export=view&id=1nY8LU2zM8GMDSQVvu8AVAQa9zQ369CZw)
+![png](https://drive.google.com/uc?export=view&id=1XT4i5N1ISx3Y8Ytkx87ZgaBAn_9ZORgo)
 
 - Madrid has on average only ~ 63.4 % precipitation from 1997 - 2015
 
@@ -742,7 +834,7 @@ display(df1.isnull().sum())
     dtype: int64
 
 
-### <font color=darkgreen> Recall, the goal is to use minimum temperature to predict maximum temperature in Barajas Airport - Madrid</font>
+#### <font color=darkgreen> Recall, the goal is to use minimum temperature to predict maximum temperature in Barajas Airport - Madrid</font>
 
 We shall replace nan values with the median of the column for both features:
 
@@ -778,9 +870,8 @@ plt.ylabel("MaxTemp")
 
 
 
-![png](https://drive.google.com/uc?export=view&id=1aBs9we7ViC2I9GD_EdYAS1iU0U3Y9HD_)
 
-
+![png](https://drive.google.com/uc?export=view&id=1hDGjrxjUSfKAPgz85fbJU58nWar3UY8s)
 
 Note: Looking at the figure above, it appears that there is some sort of linear relationship between minimum and maximum temperature.
 
@@ -795,13 +886,13 @@ sns.distplot(y)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f37a623df98>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f16956a47f0>
 
 
 
 
 
-![png](https://drive.google.com/uc?export=view&id=1W-gbxg2ZcsEBgwbyFuKWUjcI8CvYgdmp)
+![png](https://drive.google.com/uc?export=view&id=1Xn0I6HQPir0z194e4XMXLgmW2mSp2g1I)
 
 
 ## Data Splicing
@@ -838,10 +929,7 @@ y_train.shape, y_test.shape
 
 ## Machine Learning model
 
-
-```python
-
-```
+This is the part where the classifier will be instantiate and trained.
 
 
 ```python
@@ -849,7 +937,7 @@ from sklearn import metrics
 from sklearn.linear_model import LinearRegression
 
 #training the algorithm
-LR = LinearRegression().fit(x_train, y_train)
+LR = LinearRegression(normalize = True).fit(x_train, y_train)
 
 #To retrieve the intercept
 print("intercept :", LR.intercept_)
@@ -861,15 +949,23 @@ print("coefficient :", LR.coef_)
     coefficient : [[1.11300363]]
 
 
+
+```python
+LinearRegression?
+```
+
 Let's make prediction: how accurately the algorithm predict the percentage score
 
 
 ```python
 y_pred = LR.predict(x_test)
-
 ```
 
 ## Model evaluation
+
+Select a Performance Measure:
+
+A typical performance measure for regression problems is the `Mean Absolute Error`, `Mean Squared Error`, `Root Mean Square Error (RMSE)`. It gives an idea of how much error the system typically makes in its predictions.
 
 
 ```python
@@ -970,8 +1066,7 @@ plt.ylabel('Values')
 
 
 
-
-![png](https://drive.google.com/uc?export=view&id=1ieJFDWNen8yJxd1JNlibxzwFQm5R51fm)
+![png](https://drive.google.com/uc?export=view&id=1NMsX7CbZ1pk5LgYqUKtFf6PHHWqh1Slp)
 
 Let's view our linear model
 
@@ -986,4 +1081,4 @@ plt.tight_layout()
 plt.show()
 ```
 
-![png](https://drive.google.com/uc?export=view&id=1jLSBLxgefAbnppIXRaIa4dx50_BBj0Gr)
+![png](https://drive.google.com/uc?export=view&id=19EIFmu-JK4Km-zABf_qiUMZltIiOimwL)

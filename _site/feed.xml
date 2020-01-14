@@ -7,12 +7,12 @@
 </description>
     <link>http://localhost:4000/Unarine_Tshiwawa_Blog/</link>
     <atom:link href="http://localhost:4000/Unarine_Tshiwawa_Blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 11 Jan 2020 21:20:01 +0200</pubDate>
-    <lastBuildDate>Sat, 11 Jan 2020 21:20:01 +0200</lastBuildDate>
+    <pubDate>Tue, 14 Jan 2020 22:20:54 +0200</pubDate>
+    <lastBuildDate>Tue, 14 Jan 2020 22:20:54 +0200</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
-        <title>Machine Learning: Regression Task(weather Event)</title>
+        <title>Supervised Machine Learning: Regression Task (maximum Temperature Prediction)</title>
         <description>&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pylab&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
@@ -39,6 +39,10 @@
 
 &lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Dataset information:&lt;/p&gt;
+
+&lt;p&gt;The info() method is useful to get a quick description of the data&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -77,6 +81,15 @@ memory usage: 1.2+ MB
 None
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;NB: There are 6812 instances in the dataset, which means that it is very small by Machine Learning standards, but it’s perfect to get started.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;All attributes are numerical, except the &lt;code class=&quot;highlighter-rouge&quot;&gt;CET&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Events&lt;/code&gt; field&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;Shape of dataset:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;
@@ -100,7 +113,9 @@ None
       dtype='object')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Let’s view the first few rows in the dataframe:&lt;/p&gt;
+&lt;h3 id=&quot;take-a-quick-look-at-the-data-structure&quot;&gt;Take a Quick Look at the Data Structure&lt;/h3&gt;
+
+&lt;p&gt;Let’s take a look at the top five rows using the DataFrame’s head() method&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -344,36 +359,31 @@ None
 &lt;p&gt;8 rows × 23 columns&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Correlations:&lt;/p&gt;
+&lt;p&gt;When looking at the top five rows, you probably noticed that the inputs in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Events&lt;/code&gt; column are repetitive,
+which means that it is probably a categorical attribute. So we can find out what categories exist and how many weather events belong to each category by using the value_counts() method:&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;corr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Max TemperatureC'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;' Events'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value_counts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Max TemperatureC               1.000000
-Mean TemperatureC              0.970983
-Min TemperatureC               0.856143
-Dew PointC                     0.583509
-MeanDew PointC                 0.495857
-Min DewpointC                  0.329547
-Max Humidity                  -0.718184
- Mean Humidity                -0.805961
- Min Humidity                 -0.761490
- Max Sea Level PressurehPa    -0.081856
- Mean Sea Level PressurehPa   -0.011203
- Min Sea Level PressurehPa    -0.042676
- Max VisibilityKm              0.126435
- Mean VisibilityKm             0.299083
- Min VisibilitykM              0.388285
- Max Wind SpeedKm/h            0.025244
- Mean Wind SpeedKm/h          -0.073119
- Max Gust SpeedKm/h           -0.135634
-Precipitationmm               -0.068196
- CloudCover                   -0.449610
-WindDirDegrees                 0.000365
-Name: Max TemperatureC, dtype: float64
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Rain                      1140
+Rain-Thunderstorm          247
+Fog                        233
+Fog-Rain                    69
+Thunderstorm                45
+Rain-Snow                   33
+Snow                        14
+Rain-Hail-Thunderstorm       7
+Fog-Snow                     4
+Tornado                      1
+Rain-Hail                    1
+Fog-Rain-Thunderstorm        1
+Rain-Snow-Thunderstorm       1
+Fog-Thunderstorm             1
+Fog-Rain-Snow                1
+Name:  Events, dtype: int64
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Basic statistics&lt;/p&gt;
+&lt;p&gt;Basic statistics: Summary of each numerical attribute.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -617,6 +627,46 @@ Name: Max TemperatureC, dtype: float64
 &lt;p&gt;8 rows × 21 columns&lt;/p&gt;
 &lt;/div&gt;
 
+&lt;p&gt;The count , mean , min , and max rows are self-explanatory.  Note that the null values are ignored (so, for example, count of &lt;code class=&quot;highlighter-rouge&quot;&gt;Max TemperatureC&lt;/code&gt;is 6810, not 6812). The std row shows the standard deviation, which measures how dispersed the values are. The 25%, 50%, and 75% rows show the corresponding percentiles: a percentile indicates the value below which a given percentage of observations in a group of observations falls&lt;/p&gt;
+
+&lt;h3 id=&quot;looking-for-correlations&quot;&gt;Looking for Correlations:&lt;/h3&gt;
+
+&lt;p&gt;Since the dataset is not too large, you can easily compute the standard correlation coefficient (also called Pearson’s r) between every pair of attributes using the corr() method:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;corr_matrix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;corr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;corr_matrix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Max TemperatureC&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort_values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ascending&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Max TemperatureC               1.000000
+Mean TemperatureC              0.970983
+Min TemperatureC               0.856143
+Dew PointC                     0.583509
+MeanDew PointC                 0.495857
+ Min VisibilitykM              0.388285
+Min DewpointC                  0.329547
+ Mean VisibilityKm             0.299083
+ Max VisibilityKm              0.126435
+ Max Wind SpeedKm/h            0.025244
+WindDirDegrees                 0.000365
+ Mean Sea Level PressurehPa   -0.011203
+ Min Sea Level PressurehPa    -0.042676
+Precipitationmm               -0.068196
+ Mean Wind SpeedKm/h          -0.073119
+ Max Sea Level PressurehPa    -0.081856
+ Max Gust SpeedKm/h           -0.135634
+ CloudCover                   -0.449610
+Max Humidity                  -0.718184
+ Min Humidity                 -0.761490
+ Mean Humidity                -0.805961
+Name: Max TemperatureC, dtype: float64
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The correlation coefficient ranges from –1 to 1. When it is close to 1, it means that there is a strong positive correlation.  When the coefficient is close to –1, it means that there is a strong negative correlation.  Finally, coefficients close to zero mean that there is no linear correlation&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;h2 id=&quot;exploratory-data-analysis&quot;&gt;Exploratory Data Analysis&lt;/h2&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;' Events'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unique&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -650,8 +700,42 @@ Name: Max TemperatureC, dtype: float64
 Name: CET, dtype: object
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;p&gt;A histogram for each numerical attribute:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;df1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bins&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;array([[&amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696c43278&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696479438&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169649fa90&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169644f128&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16963f4780&amp;gt;],
+       [&amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169641acc0&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16963cb358&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16963709e8&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696370a20&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16963446a0&amp;gt;],
+       [&amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16962ebcf8&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696319390&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16962c09e8&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169626f080&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16962956d8&amp;gt;],
+       [&amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169623ad30&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16961ec3c8&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696210a20&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16961bf0b8&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16961e4710&amp;gt;],
+       [&amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696181080&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16961a09e8&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169614e390&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16960f4cf8&amp;gt;,
+        &amp;lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16961216a0&amp;gt;]],
+      dtype=object)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1Olv2HGjwXuN-3B-gykD-L0jrQ2PeiRhh&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Bar plot for categorical attribute:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 
@@ -667,7 +751,7 @@ Name: CET, dtype: object
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tight_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1nY8LU2zM8GMDSQVvu8AVAQa9zQ369CZw&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1XT4i5N1ISx3Y8Ytkx87ZgaBAn_9ZORgo&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Madrid has on average only ~ 63.4 % precipitation from 1997 - 2015&lt;/li&gt;
@@ -704,7 +788,7 @@ WindDirDegrees                    0
 dtype: int64
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;-recall-the-goal-is-to-use-minimum-temperature-to-predict-maximum-temperature-in-barajas-airport---madrid&quot;&gt;&lt;font color=&quot;darkgreen&quot;&gt; Recall, the goal is to use minimum temperature to predict maximum temperature in Barajas Airport - Madrid&lt;/font&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;-recall-the-goal-is-to-use-minimum-temperature-to-predict-maximum-temperature-in-barajas-airport---madrid&quot;&gt;&lt;font color=&quot;darkgreen&quot;&gt; Recall, the goal is to use minimum temperature to predict maximum temperature in Barajas Airport - Madrid&lt;/font&gt;&lt;/h4&gt;
 
 &lt;p&gt;We shall replace nan values with the median of the column for both features:&lt;/p&gt;
 
@@ -732,7 +816,7 @@ dtype: int64
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0, 0.5, 'MaxTemp')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1aBs9we7ViC2I9GD_EdYAS1iU0U3Y9HD_&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1hDGjrxjUSfKAPgz85fbJU58nWar3UY8s&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Note: Looking at the figure above, it appears that there is some sort of linear relationship between minimum and maximum temperature.&lt;/p&gt;
 
@@ -742,10 +826,10 @@ dtype: int64
 &lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;distplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;matplotlib.axes._subplots.AxesSubplot at 0x7f37a623df98&amp;gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;matplotlib.axes._subplots.AxesSubplot at 0x7f16956a47f0&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1W-gbxg2ZcsEBgwbyFuKWUjcI8CvYgdmp&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1Xn0I6HQPir0z194e4XMXLgmW2mSp2g1I&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;data-splicing&quot;&gt;Data Splicing&lt;/h2&gt;
 
@@ -772,14 +856,13 @@ dtype: int64
 
 &lt;h2 id=&quot;machine-learning-model&quot;&gt;Machine Learning model&lt;/h2&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This is the part where the classifier will be instantiate and trained.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sklearn&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metrics&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sklearn.linear_model&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearRegression&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;#training the algorithm
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearRegression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearRegression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;normalize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;#To retrieve the intercept
 &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;intercept :&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intercept_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -791,13 +874,19 @@ dtype: int64
 coefficient : [[1.11300363]]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;LinearRegression&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;?&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;p&gt;Let’s make prediction: how accurately the algorithm predict the percentage score&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;y_pred&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;model-evaluation&quot;&gt;Model evaluation&lt;/h2&gt;
+
+&lt;p&gt;Select a Performance Measure:&lt;/p&gt;
+
+&lt;p&gt;A typical performance measure for regression problems is the &lt;code class=&quot;highlighter-rouge&quot;&gt;Mean Absolute Error&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Mean Squared Error&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Root Mean Square Error (RMSE)&lt;/code&gt;. It gives an idea of how much error the system typically makes in its predictions.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Mean Absolute Error:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metrics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean_absolute_error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_pred&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Mean Squared Error:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metrics&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean_squared_error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_pred&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
@@ -885,7 +974,7 @@ Root Mean Square Error: 4.609183460830691
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Text(0, 0.5, 'Values')
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1ieJFDWNen8yJxd1JNlibxzwFQm5R51fm&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1NMsX7CbZ1pk5LgYqUKtFf6PHHWqh1Slp&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Let’s view our linear model&lt;/p&gt;
 
@@ -898,11 +987,11 @@ Root Mean Square Error: 4.609183460830691
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1jLSBLxgefAbnppIXRaIa4dx50_BBj0Gr&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=19EIFmu-JK4Km-zABf_qiUMZltIiOimwL&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sat, 11 Jan 2020 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/Unarine_Tshiwawa_Blog/2020/01/11/Machine-Learning-Regression-Task(Weather-event).html</link>
-        <guid isPermaLink="true">http://localhost:4000/Unarine_Tshiwawa_Blog/2020/01/11/Machine-Learning-Regression-Task(Weather-event).html</guid>
+        <pubDate>Tue, 14 Jan 2020 00:00:00 +0200</pubDate>
+        <link>http://localhost:4000/Unarine_Tshiwawa_Blog/2020/01/14/Supervised-Machine-Learning-Regression-Task-(maximum-temperature-prediction).html</link>
+        <guid isPermaLink="true">http://localhost:4000/Unarine_Tshiwawa_Blog/2020/01/14/Supervised-Machine-Learning-Regression-Task-(maximum-temperature-prediction).html</guid>
         
         
       </item>
