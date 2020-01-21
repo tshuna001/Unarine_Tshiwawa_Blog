@@ -946,16 +946,16 @@ print('Accuraccy in test set: {:.2f}' .format(KNN.score(x_test, y_test)))
 ```
 
     -----------------------Decision Tree Classifier---------------------
-    Accuraccy in training set: 1.00
-    Accuraccy in test set: 0.91
+    Accuracy in training set: 1.00
+    Accuracy in test set: 0.91
 
     -----------------------Random Forest Classifier---------------------
-    Accuraccy in training set: 1.00
-    Accuraccy in test set: 0.97
+    Accuracy in training set: 1.00
+    Accuracy in test set: 0.97
 
     ---------------------K-Nearest Neighbor Classifier------------------
-    Accuraccy in training set: 0.88
-    Accuraccy in test set: 0.79
+    Accuracy in training set: 0.88
+    Accuracy in test set: 0.79
 
 
 `We know that accuracy works well on balanced data.  The data is imbalanced, so we cannot use accuracy to quantify model performance. So we need another perfomance measure for imbalanced data.  We shall consider using f1 score metric to quantify the perfomance.`

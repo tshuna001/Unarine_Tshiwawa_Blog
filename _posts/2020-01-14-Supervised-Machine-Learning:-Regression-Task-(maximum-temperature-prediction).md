@@ -742,39 +742,6 @@ df1.hist(bins=50, figsize=(20,15))
 ```
 
 
-
-
-    array([[<matplotlib.axes._subplots.AxesSubplot object at 0x7f1696c43278>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f1696479438>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f169649fa90>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f169644f128>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16963f4780>],
-           [<matplotlib.axes._subplots.AxesSubplot object at 0x7f169641acc0>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16963cb358>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16963709e8>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f1696370a20>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16963446a0>],
-           [<matplotlib.axes._subplots.AxesSubplot object at 0x7f16962ebcf8>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f1696319390>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16962c09e8>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f169626f080>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16962956d8>],
-           [<matplotlib.axes._subplots.AxesSubplot object at 0x7f169623ad30>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16961ec3c8>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f1696210a20>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16961bf0b8>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16961e4710>],
-           [<matplotlib.axes._subplots.AxesSubplot object at 0x7f1696181080>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16961a09e8>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f169614e390>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16960f4cf8>,
-            <matplotlib.axes._subplots.AxesSubplot object at 0x7f16961216a0>]],
-          dtype=object)
-
-
-
-
-
 ![png](https://drive.google.com/uc?export=view&id=1Olv2HGjwXuN-3B-gykD-L0jrQ2PeiRhh)
 
 Bar plot for categorical attribute:
@@ -951,7 +918,7 @@ print("coefficient :", LR.coef_)
 
 
 ```python
-LinearRegression?
+LinearRegression:
 ```
 
 Let's make prediction: how accurately the algorithm predict the percentage score
@@ -1068,7 +1035,8 @@ plt.ylabel('Values')
 
 ![png](https://drive.google.com/uc?export=view&id=1NMsX7CbZ1pk5LgYqUKtFf6PHHWqh1Slp)
 
-Let's view our linear model
+
+Let's view our linear model:
 
 
 ```python

@@ -754,34 +754,6 @@ Name: CET, dtype: object
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696c43278&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696479438&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169649fa90&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169644f128&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16963f4780&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169641acc0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16963cb358&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16963709e8&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696370a20&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16963446a0&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16962ebcf8&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696319390&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16962c09e8&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169626f080&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16962956d8&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169623ad30&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16961ec3c8&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696210a20&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16961bf0b8&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16961e4710&gt;],
-       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f1696181080&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16961a09e8&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f169614e390&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16960f4cf8&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f16961216a0&gt;]],
-      dtype=object)
-</code></pre></div></div>
-
 <p><img src="https://drive.google.com/uc?export=view&amp;id=1Olv2HGjwXuN-3B-gykD-L0jrQ2PeiRhh" alt="png" /></p>
 
 <p>Bar plot for categorical attribute:</p>
@@ -923,7 +895,7 @@ dtype: int64
 coefficient : [[1.11300363]]
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">LinearRegression</span><span class="err">?</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">LinearRegression</span><span class="p">:</span>
 </code></pre></div></div>
 
 <p>Let’s make prediction: how accurately the algorithm predict the percentage score</p>
@@ -1025,7 +997,7 @@ Root Mean Square Error: 4.609183460830691
 
 <p><img src="https://drive.google.com/uc?export=view&amp;id=1NMsX7CbZ1pk5LgYqUKtFf6PHHWqh1Slp" alt="png" /></p>
 
-<p>Let’s view our linear model</p>
+<p>Let’s view our linear model:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'gray'</span><span class="p">)</span>
