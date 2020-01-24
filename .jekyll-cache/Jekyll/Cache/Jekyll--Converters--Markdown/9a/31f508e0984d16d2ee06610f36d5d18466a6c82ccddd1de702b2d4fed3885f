@@ -1,10 +1,10 @@
-I"-<h2 id="identifying-the-problem">Identifying the problem:</h2>
+I"~�<h2 id="identifying-the-problem">Identifying the problem:</h2>
 
-<p>In this task, I seek to demonstrate how supervised learning machine leaning can be used in a labelled dataset.</p>
+<p>In this task, I seek to demonstrate how supervised machine leaning can be used in a labelled dataset.</p>
 
 <p>We have a large dataset containing clusters of stars that are labelled.  The data set will be divided into three sets, training, validation and test set.  In this exercise, we will use a model trained on the training set containing different members of star clusters to classify different kinds of star clusters in the test set.</p>
 
-<h4 id="main-point-we-are-trying-to-build-a-model-that-will-predict-labels-for-a-new-data">Main point: we are trying to build a model that will predict labels for a new data.</h4>
+<h4 id="main-point-we-are-trying-to-build-a-model-that-will-predict-new-labels-in-a-new-data">Main point: we are trying to build a model that will predict new labels in a new data.</h4>
 
 <p>Clearly, we see that this is a machine leaning - classification - type of a problem.  An output to this problem is a categorical quantity.</p>
 
@@ -143,7 +143,7 @@ None
 
 <ul>
   <li>
-    <p>NB: There are 236620 instances in the dataset, which means that it is very small by Machine Learning standards, but it’s perfect to get started.</p>
+    <p>NB: There are 236620 instances in the dataset, which means that it is fair enough by Machine Learning standard.</p>
   </li>
   <li>
     <p>All attributes are numerical, except the <code class="highlighter-rouge">TYC2</code>, <code class="highlighter-rouge">Cluster</code>, <code class="highlighter-rouge">PMused </code> and <code class="highlighter-rouge">disterrL1350</code> field are catergotical and <code class="highlighter-rouge">duplicated_source</code> field is boolean.</p>
@@ -1408,7 +1408,7 @@ Name: Cluster, dtype: int64
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fef4faef978&gt;
 </code></pre></div></div>
 
-<p><img src="stars_updated_files/stars_updated_41_1.png" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1QXLiHzZj_Uakdu8G0r72-y9AxFUfjm35" alt="png" /></p>
 
 <p>A histogram for each numerical attribute after sample selection:</p>
 
@@ -1932,7 +1932,7 @@ Accuracy in validation set: 0.93
 <span class="n">display</span><span class="p">(</span><span class="n">KNN</span><span class="o">.</span><span class="n">get_params</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1mDecision Tree Classifier:[10m
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Decision Tree Classifier:
 
 
 
@@ -1944,7 +1944,7 @@ Accuracy in validation set: 0.93
             splitter='best')&gt;
 
 
-[1mRandom Forest Classifier:[10m
+Random Forest Classifier:
 
 
 
@@ -1957,7 +1957,7 @@ Accuracy in validation set: 0.93
             warm_start=False)&gt;
 
 
-[1mK-Nearest Neighbors Classifier:[10m
+K-Nearest Neighbors Classifier:
 
 
 
@@ -2064,570 +2064,12 @@ Accuracy in validation set(hyperparameter tunning): 1.00
 
 <p><strong>Conclusion from hyperparameter tunning:</strong>  We see that Random Forest is still overfitting.  More sophisticated approach will be required for parameter tunning.  Therefore, Decision Tree is performing the better than KNN model.  Consequently we shall deploy it for further predictions</p>
 
-<h1 id="5-feature-importance">5. Feature importance</h1>
-
-<p>Scikit-Learn measures a feature’s importance by looking at how much the tree nodes that use that feature reduce impurity on average. It computes this score automatically for each feature after training, then it scales the results so that the sum of all importances is equal to 1.</p>
-
-<h4 id="decision-tree-1">Decision Tree</h4>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">eli5</span>
-<span class="kn">from</span> <span class="nn">eli5.sklearn</span> <span class="kn">import</span> <span class="n">PermutationImportance</span>
-</code></pre></div></div>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">perm1</span> <span class="o">=</span> <span class="n">PermutationImportance</span><span class="p">(</span><span class="n">DT_search</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">eli5</span><span class="o">.</span><span class="n">show_weights</span><span class="p">(</span><span class="n">perm1</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">x_train</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
-</code></pre></div></div>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;style&gt;
-table.eli5-weights tr:hover {
-    filter: brightness(85%);
-}
-</code></pre></div></div>
-<p>&lt;/style&gt;</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    &lt;table class="eli5-weights eli5-feature-importances" style="border-collapse: collapse; border: none; margin-top: 0em; table-layout: auto;"&gt;
-&lt;thead&gt;
-&lt;tr style="border: none;"&gt;
-    &lt;th style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;Weight&lt;/th&gt;
-    &lt;th style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;Feature&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 80.00%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.4681
-
-                &amp;plusmn; 0.0032
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            DEUdeg
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 85.38%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.2991
-
-                &amp;plusmn; 0.0034
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            UCAC4
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 87.07%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.2509
-
-                &amp;plusmn; 0.0020
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            RAUdeg
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 90.34%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.1654
-
-                &amp;plusmn; 0.0019
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            RAdeg
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 91.59%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.1357
-
-                &amp;plusmn; 0.0020
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            index
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 92.71%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.1107
-
-                &amp;plusmn; 0.0018
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            DEdeg
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 94.35%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0770
-
-                &amp;plusmn; 0.0018
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            RADEcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 96.23%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0432
-
-                &amp;plusmn; 0.0020
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            DEpmDEcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 96.44%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0397
-
-                &amp;plusmn; 0.0017
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            RApmRAcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 96.58%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0375
-
-                &amp;plusmn; 0.0005
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            pmra_error
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 97.22%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0279
-
-                &amp;plusmn; 0.0012
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            parallax_error
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 97.68%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0215
-
-                &amp;plusmn; 0.0012
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            plxpmRAcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 98.35%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0133
-
-                &amp;plusmn; 0.0014
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            pmdec_error
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 98.61%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0104
-
-                &amp;plusmn; 0.0012
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            RApmDEcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 98.67%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0098
-
-                &amp;plusmn; 0.0003
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            plxpmDEcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 98.83%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0081
-
-                &amp;plusmn; 0.0005
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            DEpmRAcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 99.42%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0030
-
-                &amp;plusmn; 0.0001
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            RAplxcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 99.50%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0024
-
-                &amp;plusmn; 0.0004
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            DEplxcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 99.51%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0023
-
-                &amp;plusmn; 0.0004
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            radial_velocity
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 99.53%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0022
-
-                &amp;plusmn; 0.0005
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            NobsG
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-
-
-        &lt;tr style="background-color: hsl(120, 100.00%, 99.53%); border: none;"&gt;
-            &lt;td colspan="2" style="padding: 0 0.5em 0 0.5em; text-align: center; border: none; white-space: nowrap;"&gt;
-                &lt;i&gt;&amp;hellip; 38 more &amp;hellip;&lt;/i&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-
-
-&lt;/tbody&gt;
-</code></pre></div></div>
-<p>&lt;/table&gt;</p>
-
-<h4 id="random-forest-1">Random Forest</h4>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">perm2</span> <span class="o">=</span> <span class="n">PermutationImportance</span><span class="p">(</span><span class="n">RF_search</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">eli5</span><span class="o">.</span><span class="n">show_weights</span><span class="p">(</span><span class="n">perm2</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">x_train</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
-</code></pre></div></div>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;style&gt;
-table.eli5-weights tr:hover {
-    filter: brightness(85%);
-}
-</code></pre></div></div>
-<p>&lt;/style&gt;</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    &lt;table class="eli5-weights eli5-feature-importances" style="border-collapse: collapse; border: none; margin-top: 0em; table-layout: auto;"&gt;
-&lt;thead&gt;
-&lt;tr style="border: none;"&gt;
-    &lt;th style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;Weight&lt;/th&gt;
-    &lt;th style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;Feature&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 80.00%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0838
-
-                &amp;plusmn; 0.0014
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            RAdeg
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 86.23%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0492
-
-                &amp;plusmn; 0.0015
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            index
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 88.05%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0402
-
-                &amp;plusmn; 0.0009
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            DEdeg
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 91.38%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0252
-
-                &amp;plusmn; 0.0007
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            DEUdeg
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 97.26%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0049
-
-                &amp;plusmn; 0.0003
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            UCAC4
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 98.30%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0025
-
-                &amp;plusmn; 0.0002
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            RAUdeg
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 99.77%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0001
-
-                &amp;plusmn; 0.0001
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            plxpmDEcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 99.83%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0001
-
-                &amp;plusmn; 0.0001
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            pmra_error
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 99.93%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0000
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            DEplxcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 99.94%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0000
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            NobsG
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 99.95%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0000
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            RApmDEcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(120, 100.00%, 99.95%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0.0000
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            plxpmRAcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(0, 100.00%, 100.00%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            Hmag
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(0, 100.00%, 100.00%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            Kmag
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(0, 100.00%, 100.00%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            Jmag
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(0, 100.00%, 100.00%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            Vmag
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(0, 100.00%, 100.00%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            RADEcor
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(0, 100.00%, 100.00%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            rmag
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(0, 100.00%, 100.00%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            phot_rp_mean_flux
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-    &lt;tr style="background-color: hsl(0, 100.00%, 100.00%); border: none;"&gt;
-        &lt;td style="padding: 0 1em 0 0.5em; text-align: right; border: none;"&gt;
-            0
-
-                &amp;plusmn; 0.0000
-
-        &lt;/td&gt;
-        &lt;td style="padding: 0 0.5em 0 0.5em; text-align: left; border: none;"&gt;
-            imag
-        &lt;/td&gt;
-    &lt;/tr&gt;
-
-
-
-        &lt;tr style="background-color: hsl(0, 100.00%, 100.00%); border: none;"&gt;
-            &lt;td colspan="2" style="padding: 0 0.5em 0 0.5em; text-align: center; border: none; white-space: nowrap;"&gt;
-                &lt;i&gt;&amp;hellip; 38 more &amp;hellip;&lt;/i&gt;
-            &lt;/td&gt;
-        &lt;/tr&gt;
-
-
-&lt;/tbody&gt;
-</code></pre></div></div>
-<p>&lt;/table&gt;</p>
-
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
 
 <p>After parameter tunning and feauture importance results, Decision Tree model perfomance has improved remarkably.  Therefore the model will be used for predictions.</p>
 
-<h1 id="6-model-evaluation">6. Model evaluation</h1>
+<h1 id="5-model-evaluation">5. Model evaluation</h1>
 
 <p>We shall now evaluate machine learning models in the <code class="highlighter-rouge">validation set</code> which consitute 10% of the training data.  We shall now show a confusion matrix showing the frequency of misclassifications by our
 classifier.</p>
@@ -2640,7 +2082,7 @@ classifier.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
 
-<h3 id="decision-tree-2">Decision Tree</h3>
+<h3 id="decision-tree-1">Decision Tree</h3>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#predictions
 </span><span class="n">pred1</span> <span class="o">=</span> <span class="n">DT_search</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
@@ -2662,7 +2104,7 @@ classifier.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="stars_updated_files/stars_updated_86_0.png" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1DciQynHCbiiWyPWc5923sLMKwDP7guTG" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">summ_conf1</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">Y_val</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">pred1</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">target_names</span> <span class="o">=</span> <span class="n">labels</span><span class="p">)</span>
 
@@ -2694,7 +2136,7 @@ Cluster_Ruprecht_147       1.00      1.00      1.00       427
 ------------------------------------------------------------------
 </code></pre></div></div>
 
-<h3 id="random-forest-2">Random Forest</h3>
+<h3 id="random-forest-1">Random Forest</h3>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#predictions
 </span><span class="n">pred2</span> <span class="o">=</span> <span class="n">RF_search</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
@@ -2716,7 +2158,7 @@ Cluster_Ruprecht_147       1.00      1.00      1.00       427
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="stars_updated_files/stars_updated_89_0.png" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1WMbexrurN_hoLI0mgBwZeWz8wOh30Lbg" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">summ_conf2</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">Y_val</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">pred2</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">target_names</span> <span class="o">=</span> <span class="n">labels</span><span class="p">)</span>
 
@@ -2769,8 +2211,7 @@ Cluster_Ruprecht_147       1.00      1.00      1.00       427
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'True value'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </code></pre></div></div>
-
-<p><img src="stars_updated_files/stars_updated_92_0.png" alt="png" /></p>
+<p><img src="https://drive.google.com/uc?export=view&amp;id=1drf-yTXVDnLF93xQbjQqRk8Qlra7NC3j" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">summ_conf3</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">Y_val</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">pred3</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">target_names</span> <span class="o">=</span> <span class="n">labels</span><span class="p">)</span>
 
@@ -2805,7 +2246,7 @@ Cluster_Ruprecht_147       1.00      0.98      0.99       427
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
 
-<h1 id="7-predictions">7. Predictions</h1>
+<h1 id="6-predictions">6. Predictions</h1>
 
 <p>We shall now make predictions on the remainin <code class="highlighter-rouge">test set</code> which consitute 10% of the training data</p>
 

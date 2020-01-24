@@ -152,7 +152,7 @@ display(df1.info())
     None
 
 
-- NB: There are 236620 instances in the dataset, which means that it is very small by Machine Learning standards, but it’s perfect to get started.
+- NB: There are 236620 instances in the dataset, which means that it is fair enough by Machine Learning standard.
 
 - All attributes are numerical, except the `TYC2`, `Cluster`, `PMused ` and `disterrL1350` field are catergotical and `duplicated_source` field is boolean.
 
