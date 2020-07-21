@@ -10,9 +10,18 @@ import numpy as np
 %matplotlib inline
 import os
 from IPython.display import display
-import seaborn as sns; sns.set('notebook')
+import seaborn as sns
+sns.set(context='notebook')
 import pandas_profiling
 ```
+
+
+```python
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
+```
+
+# $$\mathrm{Regression\, for\, predicting\, continuous\, outcomes}$$
 
 ### Dataset:
 
@@ -27,14 +36,14 @@ Clearly, we see that this is a supervised machine leaning - regression - type of
 
 
 ```python
-file = '/home/unarine/Downloads/weather_madrid_lemd_1997_2015.csv.zip'
+file = 'weather_madrid_lemd_1997_2015.csv.zip'
 
 df = pd.read_csv(file, compression = 'zip')
 
 df1 = df.copy()
 ```
 
-Dataset information:
+### Dataset information:
 
 The info() method is useful to get a quick description of the data
 
@@ -81,7 +90,7 @@ display(df1.info())
 
 - All attributes are numerical, except the `CET` and `Events` field
 
-Shape of dataset:
+### Shape of dataset:
 
 
 ```python
@@ -95,7 +104,7 @@ df1.shape
 
 
 
-Features of each instance in the dataset:
+### Features of each instance in the dataset:
 
 
 ```python
@@ -154,7 +163,9 @@ display(df1.head(8))
       <th>Max Humidity</th>
       <th>Mean Humidity</th>
       <th>Min Humidity</th>
-      <th>...</th>
+      <th>Max Sea Level PressurehPa</th>
+      <th>Mean Sea Level PressurehPa</th>
+      <th>Min Sea Level PressurehPa</th>
       <th>Max VisibilityKm</th>
       <th>Mean VisibilityKm</th>
       <th>Min VisibilitykM</th>
@@ -180,7 +191,9 @@ display(df1.head(8))
       <td>100.0</td>
       <td>95.0</td>
       <td>76.0</td>
-      <td>...</td>
+      <td>1010</td>
+      <td>1008</td>
+      <td>1004</td>
       <td>10.0</td>
       <td>9.0</td>
       <td>4.0</td>
@@ -204,7 +217,9 @@ display(df1.head(8))
       <td>100.0</td>
       <td>92.0</td>
       <td>71.0</td>
-      <td>...</td>
+      <td>1007</td>
+      <td>1003</td>
+      <td>997</td>
       <td>10.0</td>
       <td>9.0</td>
       <td>4.0</td>
@@ -228,7 +243,9 @@ display(df1.head(8))
       <td>100.0</td>
       <td>85.0</td>
       <td>70.0</td>
-      <td>...</td>
+      <td>1005</td>
+      <td>999</td>
+      <td>996</td>
       <td>10.0</td>
       <td>10.0</td>
       <td>7.0</td>
@@ -252,7 +269,9 @@ display(df1.head(8))
       <td>86.0</td>
       <td>63.0</td>
       <td>49.0</td>
-      <td>...</td>
+      <td>1012</td>
+      <td>1010</td>
+      <td>1005</td>
       <td>10.0</td>
       <td>10.0</td>
       <td>10.0</td>
@@ -276,7 +295,9 @@ display(df1.head(8))
       <td>100.0</td>
       <td>95.0</td>
       <td>86.0</td>
-      <td>...</td>
+      <td>1012</td>
+      <td>1008</td>
+      <td>1005</td>
       <td>10.0</td>
       <td>5.0</td>
       <td>1.0</td>
@@ -300,7 +321,9 @@ display(df1.head(8))
       <td>100.0</td>
       <td>82.0</td>
       <td>57.0</td>
-      <td>...</td>
+      <td>1014</td>
+      <td>1010</td>
+      <td>1008</td>
       <td>10.0</td>
       <td>10.0</td>
       <td>10.0</td>
@@ -324,7 +347,9 @@ display(df1.head(8))
       <td>100.0</td>
       <td>93.0</td>
       <td>75.0</td>
-      <td>...</td>
+      <td>1016</td>
+      <td>1014</td>
+      <td>1009</td>
       <td>10.0</td>
       <td>7.0</td>
       <td>0.0</td>
@@ -348,7 +373,9 @@ display(df1.head(8))
       <td>100.0</td>
       <td>96.0</td>
       <td>87.0</td>
-      <td>...</td>
+      <td>1015</td>
+      <td>1005</td>
+      <td>1003</td>
       <td>10.0</td>
       <td>8.0</td>
       <td>4.0</td>
@@ -362,7 +389,6 @@ display(df1.head(8))
     </tr>
   </tbody>
 </table>
-<p>8 rows × 23 columns</p>
 </div>
 
 
@@ -386,11 +412,11 @@ df1[' Events'].value_counts()
     Snow                        14
     Rain-Hail-Thunderstorm       7
     Fog-Snow                     4
+    Fog-Rain-Thunderstorm        1
     Tornado                      1
     Rain-Hail                    1
-    Fog-Rain-Thunderstorm        1
-    Rain-Snow-Thunderstorm       1
     Fog-Thunderstorm             1
+    Rain-Snow-Thunderstorm       1
     Fog-Rain-Snow                1
     Name:  Events, dtype: int64
 
@@ -432,7 +458,7 @@ display(df1.describe())
       <th>Mean Humidity</th>
       <th>Min Humidity</th>
       <th>Max Sea Level PressurehPa</th>
-      <th>...</th>
+      <th>Mean Sea Level PressurehPa</th>
       <th>Min Sea Level PressurehPa</th>
       <th>Max VisibilityKm</th>
       <th>Mean VisibilityKm</th>
@@ -458,7 +484,7 @@ display(df1.describe())
       <td>6810.000000</td>
       <td>6810.000000</td>
       <td>6812.000000</td>
-      <td>...</td>
+      <td>6812.000000</td>
       <td>6812.000000</td>
       <td>5872.000000</td>
       <td>5872.000000</td>
@@ -482,7 +508,7 @@ display(df1.describe())
       <td>57.971366</td>
       <td>34.729369</td>
       <td>1020.529360</td>
-      <td>...</td>
+      <td>1017.973136</td>
       <td>1015.217410</td>
       <td>14.644074</td>
       <td>11.719857</td>
@@ -506,7 +532,7 @@ display(df1.describe())
       <td>19.675744</td>
       <td>19.320359</td>
       <td>6.235941</td>
-      <td>...</td>
+      <td>6.480085</td>
       <td>6.944745</td>
       <td>8.770024</td>
       <td>5.592324</td>
@@ -530,7 +556,7 @@ display(df1.describe())
       <td>15.000000</td>
       <td>4.000000</td>
       <td>994.000000</td>
-      <td>...</td>
+      <td>986.000000</td>
       <td>965.000000</td>
       <td>1.000000</td>
       <td>0.000000</td>
@@ -554,7 +580,7 @@ display(df1.describe())
       <td>41.000000</td>
       <td>19.000000</td>
       <td>1017.000000</td>
-      <td>...</td>
+      <td>1014.000000</td>
       <td>1011.000000</td>
       <td>10.000000</td>
       <td>10.000000</td>
@@ -578,7 +604,7 @@ display(df1.describe())
       <td>59.000000</td>
       <td>32.000000</td>
       <td>1020.000000</td>
-      <td>...</td>
+      <td>1018.000000</td>
       <td>1015.000000</td>
       <td>10.000000</td>
       <td>10.000000</td>
@@ -602,7 +628,7 @@ display(df1.describe())
       <td>74.000000</td>
       <td>47.750000</td>
       <td>1024.000000</td>
-      <td>...</td>
+      <td>1022.000000</td>
       <td>1019.000000</td>
       <td>10.000000</td>
       <td>10.000000</td>
@@ -626,7 +652,7 @@ display(df1.describe())
       <td>100.000000</td>
       <td>100.000000</td>
       <td>1047.000000</td>
-      <td>...</td>
+      <td>1043.000000</td>
       <td>1041.000000</td>
       <td>31.000000</td>
       <td>31.000000</td>
@@ -640,7 +666,6 @@ display(df1.describe())
     </tr>
   </tbody>
 </table>
-<p>8 rows × 21 columns</p>
 </div>
 
 
@@ -710,6 +735,17 @@ df1[' Events'].unique()
 
 
 
+
+```python
+
+```
+
+### Time Series & Feature engineering:
+
+Let's convert date (`CET`) to datetime object so that we can easily extract some useful information from it, such as `time`, `day` of the week, and `month`.
+
+
+
 Date:
 
 
@@ -734,15 +770,386 @@ display('Beginning date:', df1['CET'][0], 'End date:', df1['CET'][-1:])
     Name: CET, dtype: object
 
 
+Let's convert date (`CET`) to datetime object so that we can easily extract some useful information from it, such as day of the week, month and year.
+
+
+```python
+df1['CET'] = df1['CET'].apply(pd.to_datetime)
+
+df1['year'] = [i.year for i in df1['CET']]
+df1['month'] = [i.month_name()[0:3] for i in df1['CET']]
+df1['day'] = [i.day_name()[0:3] for i in df1['CET']]
+```
+
+
+```python
+
+```
+
+
+```python
+def date_property(df):
+
+    "extract all date properties from a datetime datatype by month, quarter, year, day and week"
+
+    df['CET'] = pd.to_datetime(df['CET'], infer_datetime_format=True)
+
+
+    df["Month"] = df["CET"].dt.month
+    df["Quarter"] = df["CET"].dt.quarter
+    df["Year"] = df["CET"].dt.year
+    df["Day"] = df["CET"].dt.day
+    df["Week"] = df["CET"].dt.week
+
+
+    df["Season"] = np.where(df["Month"].isin([3,4,5]),"Autumn",
+                np.where(df["Month"].isin([6,7,8]), "Winter",
+                np.where(df["Month"].isin([9,10,11]),"Spring",
+                np.where(df["Month"].isin([12,1,2]), "Summer","None"))))
+
+    df_1 = df.copy()
+
+
+    '''mapping months from jan -> Aug'''
+
+    df_1.Month = df_1.Month.map({1:'January', 2:'February', 3:'March', 4:'April', 5:'May', 6:'June',
+                                 7:'July', 8:'August', 9:'September', 10:'October', 11:'November', 12:'December'})
+    df_1.Month = pd.Categorical(df_1.Month, ['January', 'February', 'March', 'April', 'May', 'June',
+                                             'July', 'August', 'September', 'October', 'November', 'December'])
+
+    '''extracting days of the week'''
+
+    df_1.Day = [j.day_name()[0:3] for j in df_1['CET']]
+    df_1.Day = pd.Categorical(df_1.Day, ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
+
+
+
+    return df, df_1
+
+
+
+
+
+```
+
+
+```python
+
+```
+
+
+```python
+train_data = date_property(df1)[1]
+
+
+print('\n----------------------Train set------------------')
+display(train_data[["CET","Year","Month","Day","Week","Quarter","Season"]].sample(15))
+
+```
+
+
+    ----------------------Train set------------------
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CET</th>
+      <th>Year</th>
+      <th>Month</th>
+      <th>Day</th>
+      <th>Week</th>
+      <th>Quarter</th>
+      <th>Season</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3622</th>
+      <td>2007-04-08</td>
+      <td>2007</td>
+      <td>April</td>
+      <td>Sun</td>
+      <td>14</td>
+      <td>2</td>
+      <td>Autumn</td>
+    </tr>
+    <tr>
+      <th>3401</th>
+      <td>2006-08-30</td>
+      <td>2006</td>
+      <td>August</td>
+      <td>Wed</td>
+      <td>35</td>
+      <td>3</td>
+      <td>Winter</td>
+    </tr>
+    <tr>
+      <th>588</th>
+      <td>1998-08-12</td>
+      <td>1998</td>
+      <td>August</td>
+      <td>Wed</td>
+      <td>33</td>
+      <td>3</td>
+      <td>Winter</td>
+    </tr>
+    <tr>
+      <th>3281</th>
+      <td>2006-05-02</td>
+      <td>2006</td>
+      <td>May</td>
+      <td>Tue</td>
+      <td>18</td>
+      <td>2</td>
+      <td>Autumn</td>
+    </tr>
+    <tr>
+      <th>6051</th>
+      <td>2013-12-01</td>
+      <td>2013</td>
+      <td>December</td>
+      <td>Sun</td>
+      <td>48</td>
+      <td>4</td>
+      <td>Summer</td>
+    </tr>
+    <tr>
+      <th>4607</th>
+      <td>2009-12-18</td>
+      <td>2009</td>
+      <td>December</td>
+      <td>Fri</td>
+      <td>51</td>
+      <td>4</td>
+      <td>Summer</td>
+    </tr>
+    <tr>
+      <th>2183</th>
+      <td>2003-03-31</td>
+      <td>2003</td>
+      <td>March</td>
+      <td>Mon</td>
+      <td>14</td>
+      <td>1</td>
+      <td>Autumn</td>
+    </tr>
+    <tr>
+      <th>3789</th>
+      <td>2007-09-22</td>
+      <td>2007</td>
+      <td>September</td>
+      <td>Sat</td>
+      <td>38</td>
+      <td>3</td>
+      <td>Spring</td>
+    </tr>
+    <tr>
+      <th>4752</th>
+      <td>2010-05-12</td>
+      <td>2010</td>
+      <td>May</td>
+      <td>Wed</td>
+      <td>19</td>
+      <td>2</td>
+      <td>Autumn</td>
+    </tr>
+    <tr>
+      <th>5689</th>
+      <td>2012-12-04</td>
+      <td>2012</td>
+      <td>December</td>
+      <td>Tue</td>
+      <td>49</td>
+      <td>4</td>
+      <td>Summer</td>
+    </tr>
+    <tr>
+      <th>4388</th>
+      <td>2009-05-13</td>
+      <td>2009</td>
+      <td>May</td>
+      <td>Wed</td>
+      <td>20</td>
+      <td>2</td>
+      <td>Autumn</td>
+    </tr>
+    <tr>
+      <th>6248</th>
+      <td>2014-06-16</td>
+      <td>2014</td>
+      <td>June</td>
+      <td>Mon</td>
+      <td>25</td>
+      <td>2</td>
+      <td>Winter</td>
+    </tr>
+    <tr>
+      <th>1423</th>
+      <td>2001-03-01</td>
+      <td>2001</td>
+      <td>March</td>
+      <td>Thu</td>
+      <td>9</td>
+      <td>1</td>
+      <td>Autumn</td>
+    </tr>
+    <tr>
+      <th>4501</th>
+      <td>2009-09-03</td>
+      <td>2009</td>
+      <td>September</td>
+      <td>Thu</td>
+      <td>36</td>
+      <td>3</td>
+      <td>Spring</td>
+    </tr>
+    <tr>
+      <th>3865</th>
+      <td>2007-12-07</td>
+      <td>2007</td>
+      <td>December</td>
+      <td>Fri</td>
+      <td>49</td>
+      <td>4</td>
+      <td>Summer</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+```python
+
+```
+
+
+```python
+plt.figure(figsize = (14, 6))
+sns.countplot(x = 'Season', hue = ' Events', data = train_data)
+plt.legend(loc=1)
+plt.xlabel('Season', size = 15)
+plt.ylabel('Count', size=15)
+plt.tight_layout()
+```
+
+![png](https://drive.google.com/uc?export=view&id=1kF9x4SE2_JZIwSmlA4h8uRvxhMFDHkfb)
+
+
+```python
+
+```
+
+
+```python
+plt.figure(figsize = (15, 6))
+sns.countplot(x = 'Month', hue = ' Events', data = train_data)
+plt.xlabel('Month', size=15)
+plt.ylabel('Count', size=15)
+#plt.tick_params(axis='x', labelsize=12, width=2, length = 4)
+#plt.tick_params(axis='y', labelsize=12, width=2, length = 4)
+plt.tight_layout()
+```
+
+
+![png](https://drive.google.com/uc?export=view&id=1V8gHuPBrm1Al9Q6eAiCCntOdG7TDcEpM)
+
+
+```python
+
+```
+
+
+```python
+plt.figure(figsize = (12, 6))
+sns.countplot(x = 'Day', hue = ' Events', data = train_data)
+plt.xlabel('Day', size = 15)
+plt.ylabel('Count', size = 15)
+plt.tight_layout()
+
+```
+
+![png](https://drive.google.com/uc?export=view&id=1AenjnIdIXuABNDi84vtmguUf6B4mBSsO)
+
+
+```python
+
+```
+
+
+```python
+plt.figure(figsize=(15,7))
+sns.countplot(x = 'Quarter', hue = ' Events', data = train_data)
+plt.xlabel('Quarter', size=15)
+plt.ylabel('Event', size=15)
+```
+
+
+
+
+    Text(0, 0.5, 'Event')
+
+
+
+
+![png](https://drive.google.com/uc?export=view&id=1waxYFhEjbvh1PtGFQFGPcrh-H1Oe_j_J)
+
+
+
+```python
+
+```
+
+
+```python
+plt.figure(figsize=(15,6))
+sns.countplot(data = df1, x = 'year', hue = ' Events')
+plt.xlabel('Year', size = 15)
+plt.ylabel('Count', size = 15)
+```
+
+
+
+
+    Text(0, 0.5, 'Count')
+
+
+
+
+![png](https://drive.google.com/uc?export=view&id=1mSAUz6TgbHU04e-Eas15PiMN6wY0uTiC)
+
+
+```python
+
+```
+
 A histogram for each numerical attribute:
 
 
 ```python
 df1.hist(bins=50, figsize=(20,15))
+plt.show()
 ```
 
+![png](https://drive.google.com/uc?export=view&id=1ftsiIGBBDQf5GeJFoc1OjH9EiaR0xKck)
 
-![png](https://drive.google.com/uc?export=view&id=1Olv2HGjwXuN-3B-gykD-L0jrQ2PeiRhh)
 
 Bar plot for categorical attribute:
 
@@ -763,7 +1170,7 @@ plt.tight_layout()
 ```
 
 
-![png](https://drive.google.com/uc?export=view&id=1XT4i5N1ISx3Y8Ytkx87ZgaBAn_9ZORgo)
+![png](https://drive.google.com/uc?export=view&id=1sxu3-MKwHALbMibj8YRzE6e7xdFWcwPF)
 
 - Madrid has on average only ~ 63.4 % precipitation from 1997 - 2015
 
@@ -798,12 +1205,93 @@ display(df1.isnull().sum())
      CloudCover                    1372
      Events                        5014
     WindDirDegrees                    0
+    year                              0
+    month                             0
+    day                               0
+    Month                             0
+    Quarter                           0
+    Year                              0
+    Day                               0
+    Week                              0
+    Season                            0
     dtype: int64
 
 
-#### <font color=darkgreen> Recall, the goal is to use minimum temperature to predict maximum temperature in Barajas Airport - Madrid</font>
+#### Recall, the prime goal is to use minimum temperature to predict maximum temperature in Barajas Airport - Madrid
 
 We shall replace nan values with the median of the column for both features:
+
+
+```python
+display(df1[["Min TemperatureC","Max TemperatureC"]].head())
+```
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Min TemperatureC</th>
+      <th>Max TemperatureC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+```python
+display(df1[["Min TemperatureC","Max TemperatureC"]].isnull().sum())
+```
+
+
+    Min TemperatureC    2
+    Max TemperatureC    2
+    dtype: int64
+
+
+We see that `Min TemperatureC` and `Max TemperatureC` in the dataset have 2 null values, respectively.  So we can relace null values by the median of the column
 
 
 ```python
@@ -837,12 +1325,12 @@ plt.ylabel("MaxTemp")
 
 
 
+![png](https://drive.google.com/uc?export=view&id=1cgPBlIdSoS7ogsf_lHOl1nUCl8D3GD2W)
 
-![png](https://drive.google.com/uc?export=view&id=1hDGjrxjUSfKAPgz85fbJU58nWar3UY8s)
 
 Note: Looking at the figure above, it appears that there is some sort of linear relationship between minimum and maximum temperature.
 
-Let's try to inspect the maximum temperature:
+Let's try to inspect the average maximum temperature:
 
 
 ```python
@@ -853,13 +1341,12 @@ sns.distplot(y)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f16956a47f0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fb43f253b70>
 
 
 
 
-
-![png](https://drive.google.com/uc?export=view&id=1Xn0I6HQPir0z194e4XMXLgmW2mSp2g1I)
+![png](https://drive.google.com/uc?export=view&id=1qQYP3liYP3i147ywRqkM4OVTmz5xt4GB)
 
 
 ## Data Splicing
@@ -876,11 +1363,11 @@ xx = x[:, np.newaxis]
 yy = y[:, np.newaxis]
 
 #splicing
-x_train, x_test, y_train, y_test = train_test_split(xx, yy, test_size = 0.2, random_state = 10)
+x_train, x_test, y_train, y_test = train_test_split(xx, yy, test_size = 0.2, random_state = 42)
 
 ```
 
-Let's check the size of all sets:
+Let's check the dimensions of all sets:
 
 
 ```python
@@ -912,16 +1399,13 @@ print("coefficient :", LR.coef_)
 
 ```
 
-    intercept : [11.44633278]
-    coefficient : [[1.11300363]]
+    intercept : [11.53244273]
+    coefficient : [[1.1037861]]
 
 
+# Prediction:
 
-```python
-LinearRegression:
-```
-
-Let's make prediction: how accurately the algorithm predict the percentage score
+Let's make prediction to see how accurately the algorithm predict the percentage score
 
 
 ```python
@@ -941,9 +1425,9 @@ print("Mean Squared Error:", metrics.mean_squared_error(y_test, y_pred))
 print("Root Mean Square Error:", np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
 ```
 
-    Mean Absolute Error: 3.8983539895849852
-    Mean Squared Error: 21.24457217559518
-    Root Mean Square Error: 4.609183460830691
+    Mean Absolute Error: 3.962475426159121
+    Mean Squared Error: 21.49057920091619
+    Root Mean Square Error: 4.635793265549726
 
 
 creating new dataframe consist of actual and predicted values:
@@ -986,28 +1470,28 @@ display(df2.head())
   <tbody>
     <tr>
       <th>0</th>
-      <td>17.0</td>
-      <td>13.672340</td>
+      <td>32.0</td>
+      <td>30.296806</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>28.0</td>
-      <td>20.350362</td>
+      <td>32.0</td>
+      <td>28.089234</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>24.0</td>
-      <td>30.367395</td>
+      <td>8.0</td>
+      <td>14.843801</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>27.0</td>
-      <td>22.576369</td>
+      <td>16.0</td>
+      <td>20.362732</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>8.0</td>
-      <td>12.559336</td>
+      <td>15.0</td>
+      <td>14.843801</td>
     </tr>
   </tbody>
 </table>
@@ -1021,7 +1505,7 @@ Let's view few actual and predicted values:
 df2 = df2.head(15)
 df2.plot(kind = 'bar', figsize=(10,6))
 plt.grid(which = 'major', linestyle = '-', linewidth = '0.5', color = 'green')
-plt.title('Comparison of Predictated and Actual values')
+plt.title('Comparison of Predicted and Actual values')
 plt.xlabel('Variables')
 plt.ylabel('Values')
 ```
@@ -1033,10 +1517,11 @@ plt.ylabel('Values')
 
 
 
-![png](https://drive.google.com/uc?export=view&id=1NMsX7CbZ1pk5LgYqUKtFf6PHHWqh1Slp)
+
+![png](https://drive.google.com/uc?export=view&id=1f4YiIZS5hlJpyrZNeZa0cJaS_5R4RpLI)
 
 
-Let's view our linear model:
+Let's view our linear model
 
 
 ```python
@@ -1049,4 +1534,10 @@ plt.tight_layout()
 plt.show()
 ```
 
-![png](https://drive.google.com/uc?export=view&id=19EIFmu-JK4Km-zABf_qiUMZltIiOimwL)
+![png](https://drive.google.com/uc?export=view&id=1SN0jqMT11REItWqx6vZOYTChaJTLfrDU)
+
+
+
+```python
+
+```
